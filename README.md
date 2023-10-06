@@ -1,4 +1,3 @@
-# WeebWoeks
+# WeebWorks
 
-Anime List App
-WIP
+Anime List App - WIP
