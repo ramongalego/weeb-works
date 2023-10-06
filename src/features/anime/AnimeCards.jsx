@@ -1,16 +1,27 @@
-const AnimeCards = ({ isPreview, title, data }) => {
-  const mockData = [{ title: 'a' }, { title: 'b' }, { title: 'c' }, { title: 'd' }, { title: 'e' }];
+const AnimeCards = ({ isLoading, error, data, isFetching, title, isPreview }) => {
+  if (isLoading) return 'Loading...';
+
+  if (error) return `An error has occurred: ${error.message}`;
 
   return (
-    <div className='w-10/12'>
-      <div className='mt-16 flex items-center justify-between'>
-        <h1 className='text-2xl'>Trending Now</h1>
-        <p className='cursor-pointer'>View All</p>
-      </div>
-      <div className='mt-4 flex items-center justify-between'>
-        {mockData.map(item => (
-          <div key={item.title} className='w-48 h-64 bg-indigo-500 rounded'></div>
+    <div className='w-full mt-14'>
+      {isPreview && (
+        <div className='flex items-end justify-between'>
+          <h1 className='text-2xl'>{title}</h1>
+          <p className='cursor-pointer text-sm'>View All</p>
+        </div>
+      )}
+      <div className='mt-4 grid gap-4 grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7'>
+        {data.map(anime => (
+          <div key={anime.mal_id} className='w-40 h-60 rounded cursor-pointer'>
+            <img
+              src={anime.images.jpg.large_image_url}
+              alt={anime.title_english}
+              className='w-full h-full rounded'
+            />
+          </div>
         ))}
+        <div>{isFetching ? 'Updating...' : ''}</div>
       </div>
     </div>
   );
