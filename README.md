@@ -1,3 +1,4 @@
-# React + Vite
+# WeebWoeks
 
 Anime List App
+WIP
