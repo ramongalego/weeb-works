@@ -23,9 +23,10 @@ const Home = () => {
     staleTime: 60000,
   });
 
-  const renderAnimeList = (title, query) => (
+  const renderAnimeList = (title, path, query) => (
     <AnimeList
       title={title}
+      path={path}
       isPreview
       isLoading={query.isLoading}
       error={query.error}
@@ -38,9 +39,9 @@ const Home = () => {
       <h1 className='text-4xl'>Explore Anime</h1>
       <Search text='What are you searching for?' />
 
-      {renderAnimeList('Top Airing', airingAnimeQuery)}
-      {renderAnimeList('Top Upcoming', upcomingAnimeQuery)}
-      {renderAnimeList('Highest Rated', topAnimeQuery)}
+      {renderAnimeList('Top Airing', '/anime/airing', airingAnimeQuery)}
+      {renderAnimeList('Top Upcoming', '/anime/upcoming', upcomingAnimeQuery)}
+      {renderAnimeList('Highest Rated', '/anime/top', topAnimeQuery)}
     </div>
   );
 };

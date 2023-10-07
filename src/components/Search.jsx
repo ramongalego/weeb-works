@@ -9,7 +9,7 @@ const Search = ({ text, isNavbar }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    navigate(`/search?query=${input}`);
+    navigate(`/anime?query=${input}`);
     setInput('');
   };
 

@@ -15,7 +15,8 @@ const App = () => (
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/search' element={<Browse />} />
+          <Route path='/anime' element={<Browse />} />
+          <Route path='/anime/:filter' element={<Browse />} />
         </Routes>
         <ReactQueryDevtools />
       </QueryClientProvider>

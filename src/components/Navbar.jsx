@@ -20,7 +20,7 @@ const Navbar = () => {
             <ul className='flex ml-10 cursor-pointer'>
               <li className='ml-4'>Profile</li>
               <li className='ml-6'>
-                <Link to='/search'>Browse</Link>
+                <Link to='/anime'>Browse</Link>
               </li>
             </ul>
           </div>
