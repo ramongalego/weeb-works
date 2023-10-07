@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchAiringAnime, fetchUpcomingAnime, fetchTopAnime } from '../api/anime';
+import { QUERY_STALE_TIME } from '../constants/staleTime';
 
 import AnimeList from '../features/anime/AnimeList';
 import Search from '../components/Search';
@@ -8,19 +9,19 @@ const Home = () => {
   const airingAnimeQuery = useQuery({
     queryKey: ['airingAnime'],
     queryFn: () => fetchAiringAnime(7),
-    staleTime: 60000,
+    staleTime: QUERY_STALE_TIME,
   });
 
   const upcomingAnimeQuery = useQuery({
     queryKey: ['upcomingAnime'],
     queryFn: () => fetchUpcomingAnime(7),
-    staleTime: 60000,
+    staleTime: QUERY_STALE_TIME,
   });
 
   const topAnimeQuery = useQuery({
     queryKey: ['topAnime'],
     queryFn: () => fetchTopAnime(7),
-    staleTime: 60000,
+    staleTime: QUERY_STALE_TIME,
   });
 
   const renderAnimeList = (title, path, query) => (
