@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchTopAnime, fetchUpcomingAnime } from '../api/anime';
+import { fetchAiringAnime, fetchUpcomingAnime, fetchTopAnime } from '../api/anime';
 
-import AnimeCards from '../features/anime/AnimeCards';
+import AnimeList from '../features/anime/AnimeList';
 import Search from '../components/Search';
 
 const Home = () => {
-  const popularAnimeQuery = useQuery({
-    queryKey: ['topAnime'],
-    queryFn: () => fetchTopAnime(7),
+  const airingAnimeQuery = useQuery({
+    queryKey: ['airingAnime'],
+    queryFn: () => fetchAiringAnime(7),
     staleTime: 60000,
   });
 
@@ -17,14 +17,19 @@ const Home = () => {
     staleTime: 60000,
   });
 
-  const renderAnimeCards = (title, query) => (
-    <AnimeCards
+  const topAnimeQuery = useQuery({
+    queryKey: ['topAnime'],
+    queryFn: () => fetchTopAnime(7),
+    staleTime: 60000,
+  });
+
+  const renderAnimeList = (title, query) => (
+    <AnimeList
       title={title}
       isPreview
       isLoading={query.isLoading}
       error={query.error}
       data={query.data}
-      isFetching={query.isFetching}
     />
   );
 
@@ -33,8 +38,9 @@ const Home = () => {
       <h1 className='text-4xl'>Explore Anime</h1>
       <Search text='What are you searching for?' />
 
-      {renderAnimeCards('Popular', popularAnimeQuery)}
-      {renderAnimeCards('Upcoming', upcomingAnimeQuery)}
+      {renderAnimeList('Top Airing', airingAnimeQuery)}
+      {renderAnimeList('Top Upcoming', upcomingAnimeQuery)}
+      {renderAnimeList('Highest Rated', topAnimeQuery)}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import Search from './Search';
 
 const Navbar = () => {
   return (
-    <nav className='bg-gray-800 text-white'>
+    <nav className='bg-gray-800 text-white tracking-wide'>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
         <div className='relative flex h-16 items-center justify-between'>
           <div className='flex items-center'>
@@ -20,7 +20,7 @@ const Navbar = () => {
             <ul className='flex ml-10 cursor-pointer'>
               <li className='ml-4'>Profile</li>
               <li className='ml-6'>
-                <Link to='/search'>Anime List</Link>
+                <Link to='/search'>Browse</Link>
               </li>
             </ul>
           </div>
