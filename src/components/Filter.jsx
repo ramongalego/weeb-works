@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-const Filter = ({ type, options }) => {
+const Filter = ({ type, options, title }) => {
   let [searchParams, setSearchParams] = useSearchParams();
-  const [selected, setSelected] = useState();
+  const [selectedFilter, setSelectedFilter] = useState();
 
   const handleChange = e => {
-    setSelected(e.target.value);
+    setSelectedFilter(e.target.value);
 
     searchParams.set(type, e.target.value);
     setSearchParams(searchParams);
@@ -22,19 +22,25 @@ const Filter = ({ type, options }) => {
   }, [searchParams, setSearchParams, type]);
 
   useEffect(() => {
-    if (selected === 'any') removeQueryParam();
-  }, [removeQueryParam, selected]);
+    if (selectedFilter === 'any') removeQueryParam();
+  }, [removeQueryParam, selectedFilter]);
+
+  useEffect(() => {
+    if (searchParams.get(type)) {
+      setSelectedFilter(searchParams.get(type));
+    }
+  }, [searchParams, type]);
 
   return (
     <div className='flex flex-col'>
       <label htmlFor='genres' className='mb-2 text-sm font-medium capitalize'>
-        {type}
+        {title || type}
       </label>
       <select
         id={type}
-        className='bg-gray-50 border border-gray-300 text-sm rounded-lg block w-44 p-2.5 outline-none'
+        className='bg-gray-50 border border-gray-300 text-sm rounded-lg block w-52 p-2.5 outline-none mr-16'
         onChange={handleChange}
-        value={selected}
+        value={selectedFilter}
       >
         {options.map(option => (
           <option value={option.value} key={option.value}>

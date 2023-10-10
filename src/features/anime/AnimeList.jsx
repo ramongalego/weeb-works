@@ -11,7 +11,9 @@ const AnimeList = ({ isLoading, error, data, title, path, isPreview }) => {
     <div className='w-full mt-14'>
       {isPreview && (
         <div className='flex items-end justify-between'>
-          <h1 className='text-2xl text-gray-500 hover:text-gray-800 cursor-pointer'>{title}</h1>
+          <h1 className='text-2xl text-gray-500 hover:text-gray-800 cursor-pointer'>
+            <Link to={path}>{title}</Link>
+          </h1>
           <p className='cursor-pointer text-sm text-gray-500 hover:text-gray-800'>
             <Link to={path}>View All</Link>
           </p>

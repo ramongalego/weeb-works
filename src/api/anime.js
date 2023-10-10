@@ -26,3 +26,10 @@ export const fetchAiringAnime = async limit => {
 
   return data;
 };
+
+export const fetchFilteredAnime = async filterParams => {
+  const res = await axios.get(`https://api.jikan.moe/v4/anime${filterParams}`);
+  const data = res.data.data;
+
+  return data;
+};
