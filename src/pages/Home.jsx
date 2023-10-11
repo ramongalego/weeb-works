@@ -1,37 +1,36 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchAiringAnime, fetchUpcomingAnime, fetchTopAnime } from '../api/anime';
-import { QUERY_STALE_TIME } from '../constants/staleTime';
+import { QUERY_STALE_TIME, INITIAL_PAGE, PREVIEW_LIMIT } from '../constants/fetchOptions';
 
-import AnimeList from '../features/anime/AnimeList';
+import AnimeListPreview from '../features/anime/AnimeListPreview';
 import Search from '../components/Search';
 
 const Home = () => {
   const airingAnimeQuery = useQuery({
     queryKey: ['airingAnime'],
-    queryFn: () => fetchAiringAnime(7),
+    queryFn: () => fetchAiringAnime(INITIAL_PAGE, PREVIEW_LIMIT),
     staleTime: QUERY_STALE_TIME,
   });
 
   const upcomingAnimeQuery = useQuery({
     queryKey: ['upcomingAnime'],
-    queryFn: () => fetchUpcomingAnime(7),
+    queryFn: () => fetchUpcomingAnime(INITIAL_PAGE, PREVIEW_LIMIT),
     staleTime: QUERY_STALE_TIME,
   });
 
   const topAnimeQuery = useQuery({
     queryKey: ['topAnime'],
-    queryFn: () => fetchTopAnime(7),
+    queryFn: () => fetchTopAnime(INITIAL_PAGE, PREVIEW_LIMIT),
     staleTime: QUERY_STALE_TIME,
   });
 
   const renderAnimeList = (title, path, query) => (
-    <AnimeList
+    <AnimeListPreview
       title={title}
       path={path}
-      isPreview
       isLoading={query.isLoading}
       error={query.error}
-      data={query.data}
+      data={query.data?.data}
     />
   );
 

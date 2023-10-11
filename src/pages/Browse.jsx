@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useParams, useLocation, useSearchParams } from 'react-router-dom';
 import {
   fetchAiringAnime,
@@ -7,38 +7,59 @@ import {
   fetchFilteredAnime,
 } from '../api/anime';
 import { formatOptions, statusOptions, ratingOptions } from '../constants/selectOptions';
-import { QUERY_STALE_TIME } from '../constants/staleTime';
+import { QUERY_STALE_TIME } from '../constants/fetchOptions';
 
 import AnimeList from '../features/anime/AnimeList';
 import Filter from '../components/Filter';
 
+const fetchAnimeData = async ({ page, filter, locationSearch, isAnyValueNotPresent }) => {
+  if (locationSearch && isAnyValueNotPresent) {
+    return fetchFilteredAnime(page, locationSearch);
+  } else {
+    switch (filter) {
+      case 'top':
+        return fetchTopAnime(page);
+      case 'upcoming':
+        return fetchUpcomingAnime(page);
+      default:
+        return fetchAiringAnime(page);
+    }
+  }
+};
+
 const Browse = () => {
-  let [searchParams] = useSearchParams();
-
   const { filter } = useParams();
-
   const location = useLocation();
+  let [searchParams] = useSearchParams();
 
   const isAnyValueNotPresent = ![...searchParams.values()].includes('any');
 
-  const { isLoading, isError, data } = useQuery({
-    queryKey: ['animeData', filter, location.search, isAnyValueNotPresent],
-    queryFn: () => {
-      if (location.search && isAnyValueNotPresent) {
-        return fetchFilteredAnime(location.search);
-      } else {
-        switch (filter) {
-          case 'top':
-            return fetchTopAnime();
-          case 'upcoming':
-            return fetchUpcomingAnime();
-          default:
-            return fetchAiringAnime();
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, error, status } =
+    useInfiniteQuery({
+      queryKey: ['animeData', filter, location.search, isAnyValueNotPresent],
+      queryFn: ({ pageParam = 1 }) =>
+        fetchAnimeData({
+          page: pageParam,
+          filter,
+          locationSearch: location.search,
+          isAnyValueNotPresent,
+        }),
+      getNextPageParam: (lastPage, pages) => {
+        if (lastPage.pagination.has_next_page) {
+          return pages.length + 1;
         }
-      }
-    },
-    staleTime: QUERY_STALE_TIME,
-  });
+        return undefined;
+      },
+      staleTime: QUERY_STALE_TIME,
+    });
+
+  if (status === 'loading') {
+    return <h1>Loading...</h1>;
+  }
+
+  if (status === 'error') {
+    return <h1>Error: {error.message}</h1>;
+  }
 
   return (
     <div>
@@ -47,7 +68,13 @@ const Browse = () => {
         <Filter type='status' options={statusOptions} />
         <Filter type='rating' options={ratingOptions} />
       </div>
-      <AnimeList isLoading={isLoading} isError={isError} data={data} />
+      <AnimeList
+        isFetching={isFetching}
+        isFetchingNextPage={isFetchingNextPage}
+        data={data}
+        hasNextPage={hasNextPage}
+        fetchNextPage={fetchNextPage}
+      />
     </div>
   );
 };
