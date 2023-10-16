@@ -23,17 +23,13 @@ const AnimeList = ({ data, isFetching, isFetchingNextPage, fetchNextPage, hasNex
           </Fragment>
         ))}
       </div>
-      <button
-        ref={ref}
-        onClick={() => fetchNextPage()}
-        disabled={!hasNextPage || isFetchingNextPage}
-      >
+      <div ref={ref} disabled={!hasNextPage || isFetchingNextPage}>
         {isFetchingNextPage
           ? 'Loading more...'
           : hasNextPage
           ? 'Load More'
           : 'Nothing more to load'}
-      </button>
+      </div>
       <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
     </div>
   );

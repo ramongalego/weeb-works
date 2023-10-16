@@ -30,8 +30,17 @@ export const fetchAiringAnime = async (page, limit) => {
 };
 
 export const fetchFilteredAnime = async (page, filterParams) => {
-  const res = await axios.get(`https://api.jikan.moe/v4/anime?${filterParams}&page=${page}`);
+  const res = await axios.get(
+    `https://api.jikan.moe/v4/anime${filterParams}&page=${page}&order_by=popularity`,
+  );
   const data = res.data;
+
+  return data;
+};
+
+export const fetchAnimeById = async id => {
+  const res = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
+  const data = res.data.data;
 
   return data;
 };

@@ -5,18 +5,20 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Browse from './pages/Browse';
+import AnimeDetails from './features/anime/AnimeDetails';
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <Router>
     <Navbar />
-    <main className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-20 text-gray-800 tracking-wide mb-8'>
+    <main className='text-gray-800 tracking-wide'>
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/anime' element={<Browse />} />
           <Route path='/anime/:filter' element={<Browse />} />
+          <Route path='/anime/details/:id' element={<AnimeDetails />} />
         </Routes>
         <ReactQueryDevtools />
       </QueryClientProvider>
