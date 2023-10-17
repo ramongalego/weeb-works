@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const fetchTopAnime = async (page, limit) => {
   const res = await axios.get(
-    `https://api.jikan.moe/v4/top/anime?page=${page}${limit ? '&limit=' + limit : ''}`,
+    `https://api.jikan.moe/v4/top/anime?page=${page}${limit ? '&limit=' + limit : ''}&sfw=true`,
   );
   const data = res.data;
 
@@ -11,7 +11,9 @@ export const fetchTopAnime = async (page, limit) => {
 
 export const fetchUpcomingAnime = async (page, limit) => {
   const res = await axios.get(
-    `https://api.jikan.moe/v4/seasons/upcoming?page=${page}${limit ? '&limit=' + limit : ''}`,
+    `https://api.jikan.moe/v4/seasons/upcoming?page=${page}${
+      limit ? '&limit=' + limit : ''
+    }&sfw=true`,
   );
   const data = res.data;
 
@@ -31,7 +33,7 @@ export const fetchAiringAnime = async (page, limit) => {
 
 export const fetchFilteredAnime = async (page, filterParams) => {
   const res = await axios.get(
-    `https://api.jikan.moe/v4/anime${filterParams}&page=${page}&order_by=popularity`,
+    `https://api.jikan.moe/v4/anime${filterParams}&page=${page}&sfw=true&order_by=popularity`,
   );
   const data = res.data;
 

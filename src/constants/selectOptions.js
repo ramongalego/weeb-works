@@ -1,4 +1,4 @@
-export const formatOptions = [
+export const FORMAT_OPTIONS = [
   { value: 'any', label: 'Any' },
   { value: 'tv', label: 'TV Show' },
   { value: 'movie', label: 'Movie' },
@@ -8,14 +8,14 @@ export const formatOptions = [
   { value: 'music', label: 'Music' },
 ];
 
-export const statusOptions = [
+export const STATUS_OPTIONS = [
   { value: 'any', label: 'Any' },
   { value: 'airing', label: 'Airing' },
   { value: 'complete', label: 'Complete' },
   { value: 'upcoming', label: 'Upcoming' },
 ];
 
-export const ratingOptions = [
+export const RATING_OPTIONS = [
   { value: 'any', label: 'Any' },
   { value: 'g', label: 'All Ages' },
   { value: 'pg', label: 'Children' },
@@ -24,7 +24,7 @@ export const ratingOptions = [
   { value: 'r', label: 'Mild nudity' },
 ];
 
-export const genreOptions = [
+export const GENRE_OPTIONS = [
   { value: 'any', label: 'Any' },
   // WIP
 ];

@@ -6,7 +6,7 @@ import {
   fetchUpcomingAnime,
   fetchFilteredAnime,
 } from '../api/anime';
-import { formatOptions, statusOptions, ratingOptions } from '../constants/selectOptions';
+import { FORMAT_OPTIONS, STATUS_OPTIONS, RATING_OPTIONS } from '../constants/selectOptions';
 import { QUERY_STALE_TIME } from '../constants/fetchOptions';
 
 import AnimeList from '../features/anime/AnimeList';
@@ -34,7 +34,7 @@ const Browse = () => {
 
   const isAnyValueNotPresent = ![...searchParams.values()].includes('any');
 
-  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, error, status } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error, isLoading } =
     useInfiniteQuery({
       queryKey: ['animeData', filter, location.search, isAnyValueNotPresent],
       queryFn: ({ pageParam = 1 }) =>
@@ -53,27 +53,20 @@ const Browse = () => {
       staleTime: QUERY_STALE_TIME,
     });
 
-  if (status === 'loading') {
-    return <h1>Loading...</h1>;
-  }
-
-  if (status === 'error') {
-    return <h1>Error: {error.message}</h1>;
-  }
-
   return (
     <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-10 mb-8'>
       <div className='flex justify-start'>
-        <Filter title='format' type='type' options={formatOptions} />
-        <Filter type='status' options={statusOptions} />
-        <Filter type='rating' options={ratingOptions} />
+        <Filter title='format' type='type' options={FORMAT_OPTIONS} />
+        <Filter type='status' options={STATUS_OPTIONS} />
+        <Filter type='rating' options={RATING_OPTIONS} />
       </div>
       <AnimeList
-        isFetching={isFetching}
+        isLoading={isLoading}
         isFetchingNextPage={isFetchingNextPage}
         data={data}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
+        error={error}
       />
     </div>
   );

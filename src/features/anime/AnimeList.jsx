@@ -2,8 +2,9 @@ import { useEffect, Fragment } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import AnimeItem from './AnimeItem';
+import Loading from '../../components/Loading';
 
-const AnimeList = ({ data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage }) => {
+const AnimeList = ({ data, isFetchingNextPage, fetchNextPage, hasNextPage, isLoading, error }) => {
   const { ref, inView } = useInView();
 
   useEffect(() => {
@@ -12,8 +13,12 @@ const AnimeList = ({ data, isFetching, isFetchingNextPage, fetchNextPage, hasNex
     }
   }, [inView, fetchNextPage]);
 
-  return (
-    <div className='w-full mt-14'>
+  const renderAnimeList = () => {
+    if (isLoading) {
+      return <Loading />;
+    }
+
+    return (
       <div className='mt-4 grid gap-4 grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7'>
         {data?.pages?.map((group, i) => (
           <Fragment key={i}>
@@ -23,14 +28,13 @@ const AnimeList = ({ data, isFetching, isFetchingNextPage, fetchNextPage, hasNex
           </Fragment>
         ))}
       </div>
-      <div ref={ref} disabled={!hasNextPage || isFetchingNextPage}>
-        {isFetchingNextPage
-          ? 'Loading more...'
-          : hasNextPage
-          ? 'Load More'
-          : 'Nothing more to load'}
-      </div>
-      <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
+    );
+  };
+
+  return (
+    <div className='w-full mt-14'>
+      {renderAnimeList()}
+      <div ref={ref} disabled={!hasNextPage || isFetchingNextPage}></div>
     </div>
   );
 };
