@@ -1,47 +1,46 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchAiringAnime, fetchUpcomingAnime, fetchTopAnime } from '../api/anime';
-import { QUERY_STALE_TIME, INITIAL_PAGE, PREVIEW_LIMIT } from '../constants/fetchOptions';
+import {
+  QUERY_STALE_TIME,
+  INITIAL_PAGE,
+  PREVIEW_LIMIT,
+  ANIME_LIST_PREVIEW_CONFIG,
+} from '../constants/fetchOptions';
 
 import AnimeListPreview from '../features/anime/AnimeListPreview';
 import Search from '../components/Search';
 
+const queryConfig = (queryType, queryFn) => ({
+  queryKey: [`${queryType}Anime`],
+  queryFn: () => queryFn(INITIAL_PAGE, PREVIEW_LIMIT),
+  staleTime: QUERY_STALE_TIME,
+});
+
+const renderAnimeListPreview = (title, path, query) => (
+  <AnimeListPreview
+    title={title}
+    path={path}
+    isLoading={query.isLoading}
+    error={query.error}
+    data={query.data?.data}
+  />
+);
+
 const Home = () => {
-  const airingAnimeQuery = useQuery({
-    queryKey: ['airingAnime'],
-    queryFn: () => fetchAiringAnime(INITIAL_PAGE, PREVIEW_LIMIT),
-    staleTime: QUERY_STALE_TIME,
-  });
+  const { topAiring, topUpcoming, highestRated } = ANIME_LIST_PREVIEW_CONFIG;
 
-  const upcomingAnimeQuery = useQuery({
-    queryKey: ['upcomingAnime'],
-    queryFn: () => fetchUpcomingAnime(INITIAL_PAGE, PREVIEW_LIMIT),
-    staleTime: QUERY_STALE_TIME,
-  });
-
-  const topAnimeQuery = useQuery({
-    queryKey: ['topAnime'],
-    queryFn: () => fetchTopAnime(INITIAL_PAGE, PREVIEW_LIMIT),
-    staleTime: QUERY_STALE_TIME,
-  });
-
-  const renderAnimeList = (title, path, query) => (
-    <AnimeListPreview
-      title={title}
-      path={path}
-      isLoading={query.isLoading}
-      error={query.error}
-      data={query.data?.data}
-    />
-  );
+  const airingAnimeQuery = useQuery(queryConfig('airing', fetchAiringAnime));
+  const upcomingAnimeQuery = useQuery(queryConfig('upcoming', fetchUpcomingAnime));
+  const topAnimeQuery = useQuery(queryConfig('top', fetchTopAnime));
 
   return (
     <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-20 mb-8'>
-      <h1 className='text-3xl'>Explore Anime</h1>
+      <h1 className='text-3xl mb-6'>Explore Anime</h1>
       <Search text='What are you searching for?' />
 
-      {renderAnimeList('Top Airing', '/anime/airing', airingAnimeQuery)}
-      {renderAnimeList('Top Upcoming', '/anime/upcoming', upcomingAnimeQuery)}
-      {renderAnimeList('Highest Rated', '/anime/top', topAnimeQuery)}
+      {renderAnimeListPreview(topAiring.title, topAiring.path, airingAnimeQuery)}
+      {renderAnimeListPreview(topUpcoming.title, topUpcoming.path, upcomingAnimeQuery)}
+      {renderAnimeListPreview(highestRated.title, highestRated.path, topAnimeQuery)}
     </div>
   );
 };

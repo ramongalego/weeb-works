@@ -54,7 +54,7 @@ const Browse = () => {
     });
 
   return (
-    <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-10 mb-8'>
+    <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-14 mb-8'>
       <div className='flex justify-start'>
         <Filter title='format' type='type' options={FORMAT_OPTIONS} />
         <Filter type='status' options={STATUS_OPTIONS} />
