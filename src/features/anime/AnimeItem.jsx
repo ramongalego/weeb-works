@@ -8,8 +8,8 @@ const AnimeItem = ({ anime }) => {
         className='w-32 h-52 sm:w-40 sm:h-60 rounded cursor-pointer mb-12 text-gray-500 hover:text-gray-800'
       >
         <img
-          src={anime?.images?.jpg?.large_image_url}
-          alt={anime?.title_english}
+          src={anime.images.jpg.large_image_url}
+          alt={anime.title_english}
           className='w-full h-full rounded'
         />
         <p
@@ -21,7 +21,7 @@ const AnimeItem = ({ anime }) => {
             WebkitBoxOrient: 'vertical',
           }}
         >
-          {anime?.title_english || anime?.title}
+          {anime.title_english || anime.title}
         </p>
       </div>
     </Link>

@@ -1,23 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import AnimeItem from './AnimeItem';
-import Loading from '../../components/Loading';
+import AnimeGrid from './AnimeGrid';
 
-const AnimeListPreview = ({ path, title, data, isLoading }) => {
-  const renderAnimeListPreview = () => {
-    if (isLoading) {
-      return <Loading />;
-    }
-
-    return (
-      <div className='mt-4 grid gap-4 grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7'>
-        {data.map(anime => (
-          <AnimeItem anime={anime} key={anime.mal_id} />
-        ))}
-      </div>
-    );
-  };
-
+const AnimeListPreview = ({ path, title, data, isLoading, error }) => {
   return (
     <div className='w-full mt-14'>
       <div className='flex items-end justify-between'>
@@ -28,7 +13,7 @@ const AnimeListPreview = ({ path, title, data, isLoading }) => {
           <Link to={path}>View All</Link>
         </p>
       </div>
-      {renderAnimeListPreview()}
+      <AnimeGrid data={data} isLoading={isLoading} error={error} />
     </div>
   );
 };

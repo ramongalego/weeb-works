@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Browse from './pages/Browse';
 import AnimeDetails from './features/anime/AnimeDetails';
+import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
           <Route path='/anime' element={<Browse />} />
           <Route path='/anime/:filter' element={<Browse />} />
           <Route path='/anime/details/:id' element={<AnimeDetails />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
         <ReactQueryDevtools />
       </QueryClientProvider>
