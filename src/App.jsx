@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Browse from './pages/Browse';
 import AnimeDetails from './features/anime/AnimeDetails';
 import NotFound from './pages/NotFound';
+import Profile from './pages/Profile';
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
           <Route path='/anime' element={<Browse />} />
           <Route path='/anime/:filter' element={<Browse />} />
           <Route path='/anime/details/:id' element={<AnimeDetails />} />
+          <Route path='/user/:username' element={<Profile />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <ReactQueryDevtools />
