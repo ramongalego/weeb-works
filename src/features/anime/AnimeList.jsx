@@ -13,7 +13,7 @@ const AnimeList = ({ data, isFetchingNextPage, fetchNextPage, hasNextPage, isLoa
   }, [inView, fetchNextPage]);
 
   return (
-    <div className='w-full mt-14'>
+    <div className='w-full mt-10'>
       <AnimeGrid
         data={data?.pages?.flatMap(group => group.data)}
         isLoading={isLoading}

@@ -33,7 +33,7 @@ export const fetchAiringAnime = async (page, limit) => {
 
 export const fetchFilteredAnime = async (page, filterParams) => {
   const res = await axios.get(
-    `https://api.jikan.moe/v4/anime${filterParams}&page=${page}&sfw=true&order_by=popularity`,
+    `https://api.jikan.moe/v4/anime${filterParams}&page=${page}&sfw=true`,
   );
   const data = res.data;
 
@@ -42,6 +42,13 @@ export const fetchFilteredAnime = async (page, filterParams) => {
 
 export const fetchAnimeById = async id => {
   const res = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
+  const data = res.data.data;
+
+  return data;
+};
+
+export const fetchAnimeGenres = async () => {
+  const res = await axios.get('https://api.jikan.moe/v4/genres/anime?filter=genres');
   const data = res.data.data;
 
   return data;

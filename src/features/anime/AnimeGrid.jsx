@@ -3,12 +3,16 @@ import Loading from '../../components/Loading';
 import Error from '../../components/Error';
 
 const AnimeGrid = ({ data, isLoading, error }) => {
+  if (isLoading) {
+    return <Loading />;
+  }
+
   if (error) {
     return <Error message={error.message} />;
   }
 
-  if (isLoading) {
-    return <Loading />;
+  if (data.length === 0) {
+    return <Error message='No Results' />;
   }
 
   return (

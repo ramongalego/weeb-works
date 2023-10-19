@@ -38,13 +38,14 @@ const Filter = ({ type, options, title }) => {
       </label>
       <select
         id={type}
-        className='bg-gray-50 border border-gray-300 text-sm rounded-lg block w-52 p-2.5 outline-none mr-16'
+        className='bg-gray-50 border border-gray-300 text-sm rounded-lg block w-52 p-2.5 outline-none '
         onChange={handleChange}
         value={selectedFilter}
       >
-        {options.map(option => (
-          <option value={option.value} key={option.value}>
-            {option.label}
+        <option value='any'>Any</option>
+        {options?.map(option => (
+          <option value={option.value || option.mal_id} key={option.value || option.mal_id}>
+            {option.label || option.name}
           </option>
         ))}
       </select>
