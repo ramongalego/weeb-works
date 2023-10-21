@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchAiringAnime, fetchUpcomingAnime, fetchTopAnime } from '../api/anime';
+import { fetchAiringAnime, fetchUpcomingAnime, fetchTopAnime } from '../api/animeService';
 import {
   QUERY_STALE_TIME,
   INITIAL_PAGE,

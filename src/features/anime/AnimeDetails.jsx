@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchAnimeById } from '../../api/anime';
+import { fetchAnimeById } from '../../api/animeService';
 import { QUERY_STALE_TIME } from '../../constants/fetchOptions';
 import { useParams } from 'react-router-dom';
 
@@ -24,8 +24,6 @@ const AnimeDetails = () => {
   if (error) {
     return <Error message={error.message} />;
   }
-
-  console.log(data);
 
   return (
     <>
@@ -60,7 +58,23 @@ const AnimeDetails = () => {
           <AnimeDetailsActions />
           <AnimeDetailsInfo data={data} />
         </div>
-        <div className='px-10 w-full text-gray-500 mt-24'>{/* Center Content */}</div>
+        <div className='px-10 w-full text-gray-500 mt-24'>
+          {data.trailer.embed_url && (
+            <div className='bg-white p-4 rounded'>
+              <h1 className='text-2xl'>Trailer</h1>
+              <div className='w-full h-full mt-6 flex justify-center'>
+                <iframe
+                  className='w-full rounded'
+                  height='500'
+                  src={data.trailer.embed_url}
+                  title='YouTube Trailer Player'
+                  allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

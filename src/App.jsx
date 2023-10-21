@@ -4,6 +4,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 import Browse from './pages/Browse';
 import AnimeDetails from './features/anime/AnimeDetails';
 import NotFound from './pages/NotFound';
@@ -18,6 +20,8 @@ const App = () => (
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/anime' element={<Browse />} />
           <Route path='/anime/:filter' element={<Browse />} />
           <Route path='/anime/details/:id' element={<AnimeDetails />} />
