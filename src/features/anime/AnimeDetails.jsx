@@ -60,8 +60,8 @@ const AnimeDetails = () => {
         </div>
         <div className='px-10 w-full text-gray-500 mt-24'>
           {data.trailer.embed_url && (
-            <div className='bg-white p-4 rounded'>
-              <h1 className='text-2xl'>Trailer</h1>
+            <div className='bg-white p-4 pb-6 rounded'>
+              <h1 className='text-xl font-semibold'>Trailer</h1>
               <div className='w-full h-full mt-6 flex justify-center'>
                 <iframe
                   className='w-full rounded'
