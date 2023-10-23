@@ -1,7 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { fetchAnimeById } from '../../api/animeService';
-import { QUERY_STALE_TIME } from '../../constants/fetchOptions';
 import { useParams } from 'react-router-dom';
+import { useAnimeDetailsQuery } from '../../hooks/queryHooks';
 
 import Loading from '../../components/Loading';
 import Error from '../../components/Error';
@@ -11,11 +9,7 @@ import AnimeDetailsActions from './AnimeDetailsActions';
 const AnimeDetails = () => {
   const { id } = useParams();
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['animeDetails', id],
-    queryFn: () => fetchAnimeById(id),
-    stateTime: QUERY_STALE_TIME,
-  });
+  const { data, isLoading, error } = useAnimeDetailsQuery(id);
 
   if (isLoading) {
     return <Loading />;
