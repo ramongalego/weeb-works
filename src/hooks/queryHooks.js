@@ -19,6 +19,7 @@ export const useAnimePreviewListQuery = (queryType, queryFn) =>
 export const useAnimeDetailsQuery = id => {
   const { data, isLoading, error } = useQuery(['animeDetails', id], () => fetchAnimeById(id), {
     staleTime: QUERY_STALE_TIME,
+    retry: (_failureCount, error) => (error.response.status === 404 ? 0 : 3),
   });
 
   return { data, isLoading, error };

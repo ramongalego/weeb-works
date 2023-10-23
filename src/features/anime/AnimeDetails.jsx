@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useAnimeDetailsQuery } from '../../hooks/queryHooks';
 
+import NotFound from '../../pages/NotFound';
 import Loading from '../../components/Loading';
 import Error from '../../components/Error';
 import AnimeDetailsInfo from './AnimeDetailsInfo';
 import AnimeDetailsActions from './AnimeDetailsActions';
+import AnimeDetailsTrailer from './AnimeDetailsTrailer';
 
 const AnimeDetails = () => {
   const { id } = useParams();
@@ -16,6 +18,10 @@ const AnimeDetails = () => {
   }
 
   if (error) {
+    if (error.response.status === 404) {
+      return <NotFound />;
+    }
+
     return <Error message={error.message} />;
   }
 
@@ -53,21 +59,7 @@ const AnimeDetails = () => {
           <AnimeDetailsInfo data={data} />
         </div>
         <div className='px-10 w-full text-gray-500 mt-24'>
-          {data.trailer.embed_url && (
-            <div className='bg-white p-4 pb-6 rounded'>
-              <h1 className='text-xl font-semibold'>Trailer</h1>
-              <div className='w-full h-full mt-6 flex justify-center'>
-                <iframe
-                  className='w-full rounded'
-                  height='500'
-                  src={data.trailer.embed_url}
-                  title='YouTube Trailer Player'
-                  allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-          )}
+          {data.trailer.embed_url && <AnimeDetailsTrailer trailerUrl={data.trailer.embed_url} />}
         </div>
       </div>
     </>
