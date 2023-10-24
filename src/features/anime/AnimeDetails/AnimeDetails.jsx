@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { useAnimeDetailsQuery } from '../../hooks/queryHooks';
+import { useAnimeDetailsQuery } from '../../../hooks/queryHooks';
 
-import NotFound from '../../pages/NotFound';
-import Loading from '../../components/Loading';
-import Error from '../../components/Error';
+import NotFound from '../../../pages/NotFound';
+import Loading from '../../../components/Loading';
+import Error from '../../../components/Error';
 import AnimeDetailsInfo from './AnimeDetailsInfo';
 import AnimeDetailsActions from './AnimeDetailsActions';
 import AnimeDetailsTrailer from './AnimeDetailsTrailer';

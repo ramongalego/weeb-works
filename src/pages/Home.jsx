@@ -1,8 +1,8 @@
 import { fetchAiringAnime, fetchUpcomingAnime, fetchTopAnime } from '../api/animeService';
 import { ANIME_LIST_PREVIEW_CONFIG } from '../constants/fetchOptions';
 import { useAnimePreviewListQuery } from '../hooks/queryHooks';
+import { AnimeListPreview } from '../features/anime/AnimeList';
 
-import AnimeListPreview from '../features/anime/AnimeListPreview';
 import Search from '../components/Search';
 
 const renderAnimeListPreview = (title, path, query) => (

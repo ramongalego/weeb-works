@@ -1,10 +1,11 @@
 import { useParams, useLocation, useSearchParams } from 'react-router-dom';
+
 import { FORMAT_OPTIONS, STATUS_OPTIONS, RATING_OPTIONS } from '../constants/selectOptions';
 import { useGenresQuery, useInfiniteAnimeDataQuery } from '../hooks/queryHooks';
+import { AnimeList } from '../features/anime/AnimeList';
 
-import AnimeList from '../features/anime/AnimeList';
 import Filter from '../components/Filter';
-import SearchTag from '../components/SearchTag';
+import FilterTag from '../components/FilterTag';
 
 const renderFilterSection = genres => (
   <div className='flex justify-between'>
@@ -30,7 +31,7 @@ const Browse = () => {
   return (
     <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-14 mb-8'>
       {renderFilterSection(useGenresQuery())}
-      {searchQueryValue && <SearchTag value={searchQueryValue} />}
+      {searchQueryValue && <FilterTag title='Search' value={searchQueryValue} />}
       <AnimeList
         isLoading={isLoading}
         isFetchingNextPage={isFetchingNextPage}

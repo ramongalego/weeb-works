@@ -1,6 +1,6 @@
 import AnimeItem from './AnimeItem';
-import Loading from '../../components/Loading';
-import Error from '../../components/Error';
+import Loading from '../../../components/Loading';
+import Error from '../../../components/Error';
 
 const AnimeGrid = ({ data, isLoading, error }) => {
   if (isLoading) {
