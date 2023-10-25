@@ -26,7 +26,7 @@ const Navbar = () => (
           </ul>
         </div>
         <div className='flex items-center'>
-          <Search isNavbar text='Search Weebworks' />
+          <Search isNavbar />
           <p className='ml-6 cursor-pointer'>
             <Link to='/login'>Login</Link>
           </p>

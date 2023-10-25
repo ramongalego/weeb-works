@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
-const Search = ({ text, isNavbar }) => {
+const Search = ({ isNavbar }) => {
   const navigate = useNavigate();
   const inputRef = useRef(null);
 
@@ -24,7 +24,7 @@ const Search = ({ text, isNavbar }) => {
             ? 'py-2 pl-11 pr-4 rounded-md text-gray-800 outline-none w-64'
             : 'w-full p-5 pl-12 text-xl rounded-md outline-none'
         }`}
-        placeholder={text}
+        placeholder={isNavbar ? 'Search WeebWorks' : 'What are you searching for?'}
       />
     </form>
   );

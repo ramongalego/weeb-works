@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-20 mb-8'>
       <h1 className='text-3xl mb-6'>Explore Anime</h1>
-      <Search text='What are you searching for?' />
+      <Search />
 
       {renderAnimeListPreview(topAiring.title, topAiring.path, airingAnimeQuery)}
       {renderAnimeListPreview(topUpcoming.title, topUpcoming.path, upcomingAnimeQuery)}
