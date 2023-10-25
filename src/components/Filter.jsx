@@ -38,7 +38,7 @@ const Filter = ({ type, options, title }) => {
       </label>
       <select
         id={type}
-        className='bg-gray-50 border border-gray-300 text-sm rounded-lg block w-52 p-2.5 outline-none '
+        className='block w-52 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm outline-none '
         onChange={handleChange}
         value={selectedFilter}
       >

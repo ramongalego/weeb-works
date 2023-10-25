@@ -29,7 +29,7 @@ const Browse = () => {
     useInfiniteAnimeDataQuery(filter, location, isAnyValueNotPresent);
 
   return (
-    <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-14 mb-8'>
+    <div className='mx-auto mb-8 mt-14 max-w-7xl px-2 sm:px-6 lg:px-8'>
       {renderFilterSection(useGenresQuery())}
       {searchQueryValue && <FilterTag title='Search' value={searchQueryValue} />}
       <AnimeList

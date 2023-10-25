@@ -1,8 +1,8 @@
 const AnimeDetailsTrailer = ({ trailerUrl }) => {
   return (
-    <div className='bg-white p-4 pb-6 rounded'>
+    <div className='rounded bg-white p-4 pb-6'>
       <h1 className='text-xl font-semibold'>Trailer</h1>
-      <div className='w-full h-full mt-6 flex justify-center'>
+      <div className='mt-6 flex h-full w-full justify-center'>
         <iframe
           className='w-full rounded'
           height='500'

@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <Router>
     <Navbar />
-    <main className='text-gray-800 tracking-wide mb-10'>
+    <main className='mb-10 tracking-wide text-gray-800'>
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path='/' element={<Home />} />

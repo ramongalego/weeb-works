@@ -14,15 +14,15 @@ const Search = ({ isNavbar }) => {
 
   return (
     <form onSubmit={handleSubmit} className='relative flex'>
-      <span className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+      <span className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
         <MagnifyingGlassIcon className='h-6 w-6 text-gray-400' />
       </span>
       <input
         ref={inputRef}
         className={`${
           isNavbar
-            ? 'py-2 pl-11 pr-4 rounded-md text-gray-800 outline-none w-64'
-            : 'w-full p-5 pl-12 text-xl rounded-md outline-none'
+            ? 'w-64 rounded-md py-2 pl-11 pr-4 text-gray-800 outline-none'
+            : 'w-full rounded-md p-5 pl-12 text-xl outline-none'
         }`}
         placeholder={isNavbar ? 'Search WeebWorks' : 'What are you searching for?'}
       />

@@ -17,47 +17,47 @@ const SignUp = () => {
   };
 
   return (
-    <div className='flex justify-center mt-14'>
-      <div className='bg-white py-8 px-14 rounded flex flex-col justify-center items-center'>
-        <h1 className='text-2xl my-4 px-4 font-semibold'>Sign up to WeebWorks</h1>
-        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col mt-4 w-full'>
+    <div className='mt-14 flex justify-center'>
+      <div className='flex flex-col items-center justify-center rounded bg-white px-14 py-8'>
+        <h1 className='my-4 px-4 text-2xl font-semibold'>Sign up to WeebWorks</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className='mt-4 flex w-full flex-col'>
           <input
             {...register('email')}
             type='text'
             placeholder='Email'
-            className='bg-gray-100 rounded py-2 px-3 mt-4 mb-2 outline-none'
+            className='mb-2 mt-4 rounded bg-gray-100 px-3 py-2 outline-none'
           />
           <ValidationMessage message={errors.email?.message} />
           <input
             {...register('username')}
             type='text'
             placeholder='Username'
-            className='bg-gray-100 rounded py-2 px-3 mt-4 mb-2 outline-none'
+            className='mb-2 mt-4 rounded bg-gray-100 px-3 py-2 outline-none'
           />
           <ValidationMessage message={errors.username?.message} />
           <input
             {...register('password')}
             type='password'
             placeholder='Password'
-            className='bg-gray-100 rounded py-2 px-3 mt-4 mb-2 outline-none'
+            className='mb-2 mt-4 rounded bg-gray-100 px-3 py-2 outline-none'
           />
           <ValidationMessage message={errors.password?.message} />
           <input
             {...register('passwordConfirmation')}
             type='password'
             placeholder='Confirm Password'
-            className='bg-gray-100 rounded py-2 px-3 mt-4 mb-2 outline-none'
+            className='mb-2 mt-4 rounded bg-gray-100 px-3 py-2 outline-none'
           />
           <ValidationMessage message={errors.passwordConfirmation?.message} />
           <button
             type='submit'
-            className='cursor-pointer bg-indigo-500 rounded mx-auto w-28 py-2 font-semibold text-white my-8'
+            className='mx-auto my-8 w-28 cursor-pointer rounded bg-indigo-500 py-2 font-semibold text-white'
           >
             Sign up
           </button>
         </form>
 
-        <p className='mt-16 mb-2 text-sm px-6'>
+        <p className='mb-2 mt-16 px-6 text-sm'>
           Already registered?{' '}
           <Link to='/login' className='text-indigo-500 hover:text-indigo-700'>
             Login

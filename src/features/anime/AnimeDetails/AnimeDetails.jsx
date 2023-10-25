@@ -28,15 +28,15 @@ const AnimeDetails = () => {
   return (
     <>
       <div className='h-80 bg-gray-50'>
-        <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 pt-14 mb-8 flex'>
-          <div className='w-64 h-72 rounded'>
+        <div className='mx-auto mb-8 flex max-w-7xl px-2 pt-14 sm:px-6 lg:px-8'>
+          <div className='h-72 w-64 rounded'>
             <img
               src={data.images.jpg.large_image_url}
               alt={data.title_english}
-              className='w-full h-full rounded'
+              className='h-full w-full rounded'
             />
           </div>
-          <div className='px-10 w-full text-gray-500'>
+          <div className='w-full px-10 text-gray-500'>
             <h1 className='text-2xl'>{data.title_english || data.title}</h1>
             <p
               className='mt-6'
@@ -53,12 +53,12 @@ const AnimeDetails = () => {
         </div>
       </div>
 
-      <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 my-8 flex'>
+      <div className='mx-auto my-8 flex max-w-7xl px-2 sm:px-6 lg:px-8'>
         <div className='w-64'>
           <AnimeDetailsActions />
           <AnimeDetailsInfo data={data} />
         </div>
-        <div className='px-10 w-full text-gray-500 mt-24'>
+        <div className='mt-24 w-full px-10 text-gray-500'>
           {data.trailer.embed_url && <AnimeDetailsTrailer trailerUrl={data.trailer.embed_url} />}
         </div>
       </div>

@@ -5,15 +5,15 @@ const AnimeItem = ({ anime }) => {
     <Link to={`/anime/details/${anime.mal_id}`}>
       <div
         key={anime.mal_id}
-        className='w-32 h-52 sm:w-40 sm:h-60 rounded cursor-pointer mb-12 text-gray-500 hover:text-gray-800'
+        className='mb-12 h-52 w-32 cursor-pointer rounded text-gray-500 hover:text-gray-800 sm:h-60 sm:w-40'
       >
         <img
           src={anime.images.jpg.large_image_url}
           alt={anime.title_english}
-          className='w-full h-full rounded'
+          className='h-full w-full rounded'
         />
         <p
-          className='text-sm mt-2'
+          className='mt-2 text-sm'
           style={{
             overflow: 'hidden',
             display: '-webkit-box',

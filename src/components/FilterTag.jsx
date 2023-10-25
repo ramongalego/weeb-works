@@ -1,10 +1,10 @@
 import { TagIcon } from '@heroicons/react/24/outline';
 
 const FilterTag = ({ title, value }) => (
-  <div className='flex items-center mt-8 text-sm'>
-    <TagIcon className='w-6 h-6 mr-4 text-gray-500' />
-    <h1 className=' bg-indigo-500 text-white py-1 px-3 rounded-lg'>
-      {title}: <span className='capitalize font-bold'>{value}</span>
+  <div className='mt-8 flex items-center text-sm'>
+    <TagIcon className='mr-4 h-6 w-6 text-gray-500' />
+    <h1 className=' rounded-lg bg-indigo-500 px-3 py-1 text-white'>
+      {title}: <span className='font-bold capitalize'>{value}</span>
     </h1>
   </div>
 );

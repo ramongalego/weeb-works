@@ -16,7 +16,7 @@ const AnimeGrid = ({ data, isLoading, error }) => {
   }
 
   return (
-    <div className='mt-4 grid gap-4 grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7'>
+    <div className='mt-4 grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7'>
       {data.map(anime => (
         <AnimeItem anime={anime} key={anime.mal_id} />
       ))}

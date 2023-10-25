@@ -4,21 +4,21 @@ const Profile = () => {
   return (
     <>
       <div className='h-72 bg-[#242538]'>
-        <div className='pt-24 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 flex items-end'>
-          <div className='relative top-8 w-48 h-40 rounded'>
+        <div className='mx-auto flex max-w-7xl items-end px-2 pt-24 sm:px-6 lg:px-8'>
+          <div className='relative top-8 h-40 w-48 rounded'>
             <img
               src={defaultProfileImg}
               alt='Profile Image'
-              className='w-full h-full rounded bg-white'
+              className='h-full w-full rounded bg-white'
             />
           </div>
-          <div className='px-8 w-full text-white relative top-2'>
+          <div className='relative top-2 w-full px-8 text-white'>
             <h1 className='text-2xl font-semibold'>Ankrath</h1>
           </div>
         </div>
       </div>
 
-      <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 my-14 flex'>Content</div>
+      <div className='mx-auto my-14 flex max-w-7xl px-2 sm:px-6 lg:px-8'>Content</div>
     </>
   );
 };
