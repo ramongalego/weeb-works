@@ -33,7 +33,7 @@ const Filter = ({ type, options, title }) => {
 
   return (
     <div className='flex flex-col'>
-      <label htmlFor='genres' className='mb-2 text-sm font-medium capitalize'>
+      <label htmlFor={type} className='mb-2 text-sm font-medium capitalize'>
         {title || type}
       </label>
       <select
