@@ -1,5 +1,7 @@
+import userEvent from '@testing-library/user-event';
+
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
 
 import Filter from '../Filter';
@@ -40,9 +42,7 @@ describe('Filter component', () => {
   it('renders options correctly', () => {
     renderWithRouter(<Filter type='genre' options={options} />);
 
-    options.forEach(option => {
-      screen.getByText(option.label);
-    });
+    options.forEach(option => screen.getByText(option.label));
   });
 
   it('sets the initial dropdown value to Any when search params is empty', () => {
@@ -59,23 +59,25 @@ describe('Filter component', () => {
     expect(optionValue).toBe('action');
   });
 
-  it('updates the search params when dropdown value changes', () => {
+  it('updates the search params when dropdown value changes', async () => {
+    const user = userEvent.setup();
+
     renderWithRouter(<FilterWithSearchParams />);
 
-    fireEvent.change(screen.getByLabelText('genre'), { target: { value: 'drama' } });
+    await user.selectOptions(screen.getByLabelText('genre'), 'drama');
 
-    const sarchParamsContent = screen
-      .getByTestId('search-params')
-      .textContent.includes('genre=drama');
-    expect(sarchParamsContent).toBe(true);
+    const searchParams = screen.getByTestId('search-params');
+    expect(searchParams).toHaveTextContent('genre=drama');
   });
 
-  it('removes value from search params when dropdown value changes to Any', () => {
+  it('removes value from search params when dropdown value changes to Any', async () => {
+    const user = userEvent.setup();
+
     renderWithRouter(<FilterWithSearchParams />, ['/anime?genre=action']);
 
-    fireEvent.change(screen.getByLabelText('genre'), { target: { value: 'any' } });
+    await user.selectOptions(screen.getByLabelText('genre'), 'any');
 
-    const searchParamsContent = screen.getByTestId('search-params').textContent.includes('genre=');
-    expect(searchParamsContent).toBe(false);
+    const searchParams = screen.getByTestId('search-params');
+    expect(searchParams).toHaveTextContent('');
   });
 });

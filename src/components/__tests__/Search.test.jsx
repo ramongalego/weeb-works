@@ -1,5 +1,7 @@
+import userEvent from '@testing-library/user-event';
+
 import { describe, beforeEach, it } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Search from '../Search';
@@ -23,10 +25,12 @@ describe('Search component', () => {
     screen.getByRole('textbox');
   });
 
-  it('navigates to the correct URL on form submission', () => {
+  it('navigates to the correct URL on form submission', async () => {
+    const user = userEvent.setup();
+
     const input = screen.getByRole('textbox');
-    fireEvent.change(input, { target: { value: 'naruto' } });
-    fireEvent.submit(input);
+
+    await user.type(input, 'naruto{enter}');
 
     screen.getByText('Browse Page');
   });
