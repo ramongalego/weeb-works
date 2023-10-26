@@ -2,16 +2,16 @@ import userEvent from '@testing-library/user-event';
 
 import { describe, it, beforeEach, expect } from 'vitest';
 import { screen, render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter as Router } from 'react-router-dom';
 
 import Login from '../Login';
 
 describe('Login component', () => {
   beforeEach(() =>
     render(
-      <MemoryRouter>
+      <Router>
         <Login />
-      </MemoryRouter>,
+      </Router>,
     ),
   );
 

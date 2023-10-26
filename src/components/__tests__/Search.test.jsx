@@ -4,19 +4,19 @@ import { describe, beforeEach, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
+const renderWithRouter = element =>
+  render(
+    <Router initialEntries={['/']}>
+      <Routes>
+        <Route path='/anime' element={<div>Browse Page</div>} />
+        <Route path='/' element={element} />
+      </Routes>
+    </Router>,
+  );
+
 import Search from '../Search';
 
 describe('Search component', () => {
-  const renderWithRouter = element =>
-    render(
-      <Router initialEntries={['/']}>
-        <Routes>
-          <Route path='/anime' element={<h1>Browse Page</h1>} />
-          <Route path='/' element={element} />
-        </Routes>
-      </Router>,
-    );
-
   beforeEach(() => {
     renderWithRouter(<Search isNavbar={true} />);
   });
