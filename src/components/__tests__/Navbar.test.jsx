@@ -17,9 +17,8 @@ describe('Navbar component', () => {
     screen.getByRole('navigation');
   });
 
-  it('renders the logo and brand name', () => {
+  it('renders the logo', () => {
     screen.getByAltText('WeebWorks');
-    screen.getByText('WeebWorks');
   });
 
   it('renders the navigation links with correct URLs', () => {

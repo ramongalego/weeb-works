@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
-    <div className='mt-14 flex justify-center pt-16'>
+    <div className='mt-14 flex justify-center pt-20'>
       <div className='flex flex-col items-center justify-center rounded bg-white px-16 py-8'>
         <h1 className='my-4 px-4 text-2xl font-semibold'>Login</h1>
         <form className='mt-4 flex w-full flex-col'>

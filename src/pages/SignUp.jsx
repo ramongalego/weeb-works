@@ -17,7 +17,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className='mt-14 flex justify-center pt-16'>
+    <div className='mt-14 flex justify-center pt-20'>
       <div className='flex flex-col items-center justify-center rounded bg-white px-14 py-8'>
         <h1 className='my-4 px-4 text-2xl font-semibold'>Sign up to WeebWorks</h1>
         <form onSubmit={handleSubmit(onSubmit)} className='mt-4 flex w-full flex-col'>

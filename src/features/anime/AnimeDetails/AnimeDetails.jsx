@@ -28,7 +28,7 @@ const AnimeDetails = () => {
 
   return (
     <>
-      <div className='mt-16 h-80 bg-gray-50'>
+      <div className='mt-20 h-80 bg-gray-50'>
         <div className='mx-auto mb-8 flex max-w-7xl px-2 pt-14 sm:px-6 lg:px-8'>
           <div className='h-72 w-64 rounded'>
             <img

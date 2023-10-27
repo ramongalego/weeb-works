@@ -22,7 +22,7 @@ const Home = () => {
   const topAnimeQuery = useAnimePreviewListQuery('top', fetchTopAnime);
 
   return (
-    <div className='mx-auto mb-8 mt-20 max-w-7xl px-2 pt-16 sm:px-6 lg:px-8'>
+    <div className='mx-auto mb-8 mt-20 max-w-7xl px-2 pt-20 sm:px-6 lg:px-8'>
       <h1 className='mb-6 text-3xl'>Explore Anime</h1>
       <Search />
 
