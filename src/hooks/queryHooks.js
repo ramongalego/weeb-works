@@ -1,6 +1,7 @@
 import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
-import { QUERY_STALE_TIME, INITIAL_PAGE, PREVIEW_LIMIT } from '../constants/fetchOptions';
+
 import { fetchAnimeById, fetchAnimeGenres, fetchAnimeData } from '../api/animeService';
+import { QUERY_STALE_TIME, INITIAL_PAGE, PREVIEW_LIMIT } from '../constants/fetchOptions';
 
 export const useGenresQuery = () =>
   useQuery({

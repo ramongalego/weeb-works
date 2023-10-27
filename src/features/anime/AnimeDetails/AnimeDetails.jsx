@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom';
-import { useAnimeDetailsQuery } from '../../../hooks/queryHooks';
 
-import NotFound from '../../../pages/NotFound';
-import Loading from '../../../components/Loading';
 import Error from '../../../components/Error';
-import AnimeDetailsInfo from './AnimeDetailsInfo';
+import Loading from '../../../components/Loading';
+import { useAnimeDetailsQuery } from '../../../hooks/queryHooks';
+import NotFound from '../../../pages/NotFound';
+
 import AnimeDetailsActions from './AnimeDetailsActions';
+import AnimeDetailsInfo from './AnimeDetailsInfo';
 import AnimeDetailsTrailer from './AnimeDetailsTrailer';
 
 const AnimeDetails = () => {

@@ -1,5 +1,5 @@
-import { describe, it } from 'vitest';
 import { screen, render } from '@testing-library/react';
+import { describe, it } from 'vitest';
 
 import NotFound from '../NotFound';
 

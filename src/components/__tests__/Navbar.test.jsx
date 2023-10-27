@@ -1,6 +1,6 @@
-import { describe, beforeEach, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
+import { describe, beforeEach, it, expect } from 'vitest';
 
 import Navbar from '../Navbar';
 

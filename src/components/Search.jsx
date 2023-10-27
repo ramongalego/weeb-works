@@ -1,6 +1,6 @@
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 const Search = ({ isNavbar }) => {
   const navigate = useNavigate();

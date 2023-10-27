@@ -18,6 +18,9 @@ const AnimeDetailsInfo = ({ data }) => {
       {renderDetailsSection('Score', data.score)}
       {renderDetailsSection('Year', data.year)}
       {renderDetailsSection('Season', data.season)}
+      {renderDetailsSection('Studios', data.studios)}
+      {renderDetailsSection('Themes', data.themes)}
+      {renderDetailsSection('Genres', data.genres)}
       {renderDetailsSection('Source', data.source)}
       {renderDetailsSection('Rating', data.rating)}
     </div>

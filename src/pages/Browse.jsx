@@ -1,11 +1,11 @@
 import { useParams, useLocation, useSearchParams } from 'react-router-dom';
 
-import { FORMAT_OPTIONS, STATUS_OPTIONS, RATING_OPTIONS } from '../constants/selectOptions';
-import { useGenresQuery, useInfiniteAnimeDataQuery } from '../hooks/queryHooks';
-import { AnimeList } from '../features/anime/AnimeList';
-
 import Filter from '../components/Filter';
 import FilterTag from '../components/FilterTag';
+import { FORMAT_OPTIONS, STATUS_OPTIONS, RATING_OPTIONS } from '../constants/selectOptions';
+import { AnimeList } from '../features/anime/AnimeList';
+import { useGenresQuery, useInfiniteAnimeDataQuery } from '../hooks/queryHooks';
+
 
 const renderFilterSection = genres => (
   <div className='flex justify-between'>

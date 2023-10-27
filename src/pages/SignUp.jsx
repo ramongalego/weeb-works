@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import ValidationMessage from '../components/ValidationMessage';
 import { signUpSchema } from '../constants/formSchemas';

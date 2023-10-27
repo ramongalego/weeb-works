@@ -1,8 +1,7 @@
-import userEvent from '@testing-library/user-event';
-
-import { describe, beforeEach, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import { describe, beforeEach, it } from 'vitest';
 
 const renderWithRouter = element =>
   render(

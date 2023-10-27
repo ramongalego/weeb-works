@@ -1,8 +1,7 @@
-import userEvent from '@testing-library/user-event';
-
-import { describe, it, beforeEach, expect } from 'vitest';
 import { screen, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter as Router } from 'react-router-dom';
+import { describe, it, beforeEach, expect } from 'vitest';
 
 import Login from '../Login';
 

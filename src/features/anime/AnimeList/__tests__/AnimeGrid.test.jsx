@@ -1,6 +1,6 @@
-import { describe, it } from 'vitest';
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import { describe, it } from 'vitest';
 
 import AnimeGrid from '../AnimeGrid';
 
