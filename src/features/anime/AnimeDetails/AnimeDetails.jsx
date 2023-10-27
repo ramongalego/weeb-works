@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+
 import Error from '../../../components/Error';
 import Loading from '../../../components/Loading';
 import { useAnimeDetailsQuery } from '../../../hooks/queryHooks';
