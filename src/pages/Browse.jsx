@@ -6,7 +6,6 @@ import { FORMAT_OPTIONS, STATUS_OPTIONS, RATING_OPTIONS } from '../constants/sel
 import { AnimeList } from '../features/anime/AnimeList';
 import { useGenresQuery, useInfiniteAnimeDataQuery } from '../hooks/queryHooks';
 
-
 const renderFilterSection = genres => (
   <div className='flex justify-between'>
     <Filter title='format' type='type' options={FORMAT_OPTIONS} />
