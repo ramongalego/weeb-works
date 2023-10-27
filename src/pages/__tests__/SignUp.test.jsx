@@ -44,7 +44,7 @@ describe('SignUp component', () => {
     const emailInput = screen.getByPlaceholderText('Email');
 
     await user.type(emailInput, 'invalid email');
-    user.click(signUpButton);
+    await user.click(signUpButton);
 
     screen.findByText('The email should be a valid email address');
   });

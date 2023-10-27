@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
+import ScrollToTop from './components/ScrollToTop';
 import { AnimeDetails } from './features/anime/AnimeDetails';
 import Browse from './pages/Browse';
 import Home from './pages/Home';
@@ -15,6 +16,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <Router>
+    <ScrollToTop />
     <Navbar />
     <main className='mb-10 tracking-wide text-gray-800'>
       <QueryClientProvider client={queryClient}>

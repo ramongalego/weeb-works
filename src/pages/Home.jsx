@@ -4,7 +4,6 @@ import { ANIME_LIST_PREVIEW_CONFIG } from '../constants/fetchOptions';
 import { AnimeListPreview } from '../features/anime/AnimeList';
 import { useAnimePreviewListQuery } from '../hooks/queryHooks';
 
-
 const renderAnimeListPreview = (title, path, query) => (
   <AnimeListPreview
     title={title}
@@ -23,7 +22,7 @@ const Home = () => {
   const topAnimeQuery = useAnimePreviewListQuery('top', fetchTopAnime);
 
   return (
-    <div className='mx-auto mb-8 mt-20 max-w-7xl px-2 sm:px-6 lg:px-8'>
+    <div className='mx-auto mb-8 mt-20 max-w-7xl px-2 pt-16 sm:px-6 lg:px-8'>
       <h1 className='mb-6 text-3xl'>Explore Anime</h1>
       <Search />
 
