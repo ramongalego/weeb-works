@@ -1,10 +1,11 @@
 import AnimeDetailsSection from './AnimeDetailsSection';
 
 const renderDetailsSection = (title, data) => {
-  if (data && data !== 'Unknown') {
+  const hasData = Array.isArray(data) ? data.length > 0 : data && data !== 'Unknown';
+
+  if (hasData) {
     return <AnimeDetailsSection title={title} data={data} />;
   }
-
   return null;
 };
 
