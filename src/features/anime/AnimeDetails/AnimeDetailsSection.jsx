@@ -1,8 +1,8 @@
 const AnimeDetailsSection = ({ title, data }) => {
   const content = Array.isArray(data) ? (
-    data.map(studio => (
-      <div key={studio.name} className='mt-1 capitalize'>
-        {studio.name}
+    data.map(item => (
+      <div key={item.name} className='mt-1 capitalize'>
+        {item.name}
       </div>
     ))
   ) : (
