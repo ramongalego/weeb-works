@@ -1,4 +1,4 @@
-export const animeDetailsResponse = {
+export const animeDetails = {
   data: {
     title_english: 'Mock Title',
     title: 'Mock Alt Title',
