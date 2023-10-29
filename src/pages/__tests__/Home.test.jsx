@@ -1,11 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router';
-import { describe, it } from 'vitest';
+import { describe, it, expect } from 'vitest';
 
-import AnimeDetails from '../AnimeDetails';
+import Home from '../Home';
 
-describe('AnimeDetails component', () => {
+describe('Home component', () => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -16,25 +16,28 @@ describe('AnimeDetails component', () => {
 
   const Wrapper = () => (
     <QueryClientProvider client={queryClient}>
-      <Router initialEntries={['/anime/1']}>
+      <Router initialEntries={['/']}>
         <Routes>
-          <Route path='/anime/:id' element={<AnimeDetails />} />
+          <Route path='/' element={<Home />} />
         </Routes>
       </Router>
     </QueryClientProvider>
   );
 
-  it('renders loading state initially', async () => {
+  it('renders title and search bar', () => {
     render(<Wrapper />);
 
-    await screen.findByAltText('Loading Spinner');
+    screen.getByText('Explore Anime');
+    screen.getByRole('textbox');
   });
 
   it('renders data correctly when it is fetched', async () => {
     render(<Wrapper />);
 
-    await screen.findByText('Mock Title');
-    await screen.findByAltText('Mock Title');
-    await screen.findByText('Mock Synopsis');
+    const itemsTitle = await screen.findAllByText('Mock Title');
+    const itemsImage = await screen.findAllByAltText('Mock Title');
+
+    expect(itemsTitle).toHaveLength(3);
+    expect(itemsImage).toHaveLength(3);
   });
 });
