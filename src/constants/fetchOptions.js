@@ -15,6 +15,10 @@ export const ANIME_LIST_PREVIEW_CONFIG = {
     title: 'Top Upcoming',
     path: '/anime/upcoming',
   },
+  mostPopular: {
+    title: 'Most Popular',
+    path: '/anime/popular',
+  },
   highestRated: {
     title: 'Highest Rated',
     path: '/anime/top',

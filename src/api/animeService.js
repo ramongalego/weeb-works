@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { BASE_URL } from '../constants/fetchOptions';
 
-export const fetchTopAnime = async (page, limit) => {
+export const fetchHighestRatedAnime = async (page, limit) => {
   const res = await axios.get(
     `${BASE_URL}/top/anime?page=${page}${limit ? '&limit=' + limit : ''}&sfw=true`,
   );
@@ -23,6 +23,17 @@ export const fetchUpcomingAnime = async (page, limit) => {
 export const fetchAiringAnime = async (page, limit) => {
   const res = await axios.get(
     `${BASE_URL}/top/anime?filter=airing&page=${page}${limit ? '&limit=' + limit : ''}&sfw=true`,
+  );
+  const data = res.data;
+
+  return data;
+};
+
+export const fetchMostPopularAnime = async (page, limit) => {
+  const res = await axios.get(
+    `${BASE_URL}/top/anime?filter=bypopularity&page=${page}${
+      limit ? '&limit=' + limit : ''
+    }&sfw=true`,
   );
   const data = res.data;
 
@@ -56,9 +67,11 @@ export const fetchAnimeData = async ({ page, filter, locationSearch, isAnyValueN
   } else {
     switch (filter) {
       case 'top':
-        return fetchTopAnime(page);
+        return fetchHighestRatedAnime(page);
       case 'upcoming':
         return fetchUpcomingAnime(page);
+      case 'popular':
+        return fetchMostPopularAnime(page);
       default:
         return fetchAiringAnime(page);
     }

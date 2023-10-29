@@ -1,4 +1,9 @@
-import { fetchAiringAnime, fetchUpcomingAnime, fetchTopAnime } from '../api/animeService';
+import {
+  fetchAiringAnime,
+  fetchUpcomingAnime,
+  fetchHighestRatedAnime,
+  fetchMostPopularAnime,
+} from '../api/animeService';
 import Search from '../components/Search';
 import { ANIME_LIST_PREVIEW_CONFIG } from '../constants/fetchOptions';
 import { AnimeListPreview } from '../features/anime/AnimeList';
@@ -15,11 +20,12 @@ const renderAnimeListPreview = (title, path, query) => (
 );
 
 const Home = () => {
-  const { topAiring, topUpcoming, highestRated } = ANIME_LIST_PREVIEW_CONFIG;
+  const { topAiring, topUpcoming, mostPopular, highestRated } = ANIME_LIST_PREVIEW_CONFIG;
 
   const airingAnimeQuery = useAnimePreviewListQuery('airing', fetchAiringAnime);
   const upcomingAnimeQuery = useAnimePreviewListQuery('upcoming', fetchUpcomingAnime);
-  const topAnimeQuery = useAnimePreviewListQuery('top', fetchTopAnime);
+  const topAnimeQuery = useAnimePreviewListQuery('top', fetchHighestRatedAnime);
+  const popularAnimeQuery = useAnimePreviewListQuery('popular', fetchMostPopularAnime);
 
   return (
     <div className='mx-auto mb-8 mt-20 max-w-7xl px-2 pt-20 sm:px-6 lg:px-8'>
@@ -28,6 +34,7 @@ const Home = () => {
 
       {renderAnimeListPreview(topAiring.title, topAiring.path, airingAnimeQuery)}
       {renderAnimeListPreview(topUpcoming.title, topUpcoming.path, upcomingAnimeQuery)}
+      {renderAnimeListPreview(mostPopular.title, mostPopular.path, popularAnimeQuery)}
       {renderAnimeListPreview(highestRated.title, highestRated.path, topAnimeQuery)}
     </div>
   );
