@@ -1,11 +1,11 @@
 import Error from '../../../components/Error';
-import Loading from '../../../components/Loading';
+import SkeletonLoading from '../../../components/SkeletonLoading';
 
 import AnimeItem from './AnimeItem';
 
-const AnimeGrid = ({ data, isLoading, error }) => {
+const AnimeGrid = ({ data, isLoading, error, skeletonCount }) => {
   if (isLoading) {
-    return <Loading />;
+    return <SkeletonLoading count={skeletonCount} />;
   }
 
   if (error) {

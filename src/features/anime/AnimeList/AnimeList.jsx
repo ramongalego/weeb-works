@@ -18,6 +18,7 @@ const AnimeList = ({ data, isFetchingNextPage, fetchNextPage, hasNextPage, isLoa
         data={data?.pages?.flatMap(group => group.data)}
         isLoading={isLoading}
         error={error}
+        skeletonCount={25}
       />
       <div ref={ref} disabled={!hasNextPage || isFetchingNextPage}></div>
     </div>

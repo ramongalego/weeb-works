@@ -13,7 +13,7 @@ const AnimeListPreview = ({ path, title, data, isLoading, error }) => {
           <Link to={path}>View All</Link>
         </p>
       </div>
-      <AnimeGrid data={data} isLoading={isLoading} error={error} />
+      <AnimeGrid data={data} isLoading={isLoading} error={error} skeletonCount={7} />
     </div>
   );
 };

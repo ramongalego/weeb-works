@@ -1,8 +1,8 @@
 import spinner from '../assets/spinner.gif';
 
 const Loading = () => (
-  <div className='flex items-center justify-center'>
-    <img src={spinner} alt='Loading Spinner' className='my-10 h-10 w-10' />
+  <div className='flex h-screen items-center justify-center'>
+    <img src={spinner} alt='Loading Spinner' className='h-20 w-20' />
   </div>
 );
 
