@@ -5,10 +5,10 @@ import { describe, it } from 'vitest';
 import AnimeGrid from '../AnimeGrid';
 
 describe('AnimeGrid component', () => {
-  it('renders the Loading component when isLoading is true', () => {
+  it('renders the SkeletonLoading component when isLoading is true', () => {
     render(<AnimeGrid isLoading={true} />);
 
-    screen.getByAltText('Loading Spinner');
+    screen.getAllByTestId('skeleton-loading');
   });
 
   it('renders the Error component with error message when error is truthy', () => {
