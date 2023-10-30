@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import useUserStore from '../app/store';
 import logo from '../assets/ww.png';
 
 import Search from './Search';
 
 const Navbar = () => {
+  const currentUser = useUserStore(state => state.current);
+  const logout = useUserStore(state => state.logout);
+
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [isSticky, setIsSticky] = useState(true);
 
@@ -52,11 +56,17 @@ const Navbar = () => {
           <div className='flex items-center'>
             <Search isNavbar />
             <p className='ml-6 cursor-pointer'>
-              <Link to='/login'>Login</Link>
+              {currentUser ? (
+                <button onClick={logout}>Logout</button>
+              ) : (
+                <Link to='/login'>Login</Link>
+              )}
             </p>
-            <p className='ml-6 cursor-pointer rounded bg-indigo-500 px-3 py-1 font-semibold'>
-              <Link to='/signup'>Sign Up</Link>
-            </p>
+            {!currentUser && (
+              <p className='ml-6 cursor-pointer rounded bg-indigo-500 px-3 py-1 font-semibold'>
+                <Link to='/signup'>Sign Up</Link>
+              </p>
+            )}
           </div>
         </div>
       </div>

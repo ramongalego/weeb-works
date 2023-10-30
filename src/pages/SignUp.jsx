@@ -1,20 +1,34 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ID } from 'appwrite';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+import useUserStore from '../app/store';
+import Loading from '../components/Loading';
 import ValidationMessage from '../components/ValidationMessage';
 import { signUpSchema } from '../constants/formSchemas';
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const registerUser = useUserStore(state => state.register);
+  const isLoading = useUserStore(state => state.loading);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(signUpSchema) });
 
-  const onSubmit = data => {
-    console.log(data);
+  const onSubmit = async data => {
+    await registerUser(ID.unique(), data.email, data.password, data.username);
+
+    if (!isLoading) navigate('/');
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className='mt-14 flex justify-center pt-20'>
