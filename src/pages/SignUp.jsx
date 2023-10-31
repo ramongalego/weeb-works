@@ -17,6 +17,7 @@ const SignUp = () => {
 
   const registerUser = useAuthStore(state => state.registerUser);
   const isLoading = useAuthStore(state => state.isLoading);
+  const authErrors = useAuthStore(state => state.errors);
 
   const {
     register,
@@ -27,7 +28,7 @@ const SignUp = () => {
   const onSubmit = async data => {
     await registerUser(ID.unique(), data.email, data.password, data.username);
 
-    if (!isLoading) navigate('/');
+    if (!isLoading && !authErrors) navigate('/');
   };
 
   if (isLoading) {

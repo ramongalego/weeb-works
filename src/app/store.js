@@ -15,7 +15,7 @@ const useAuthStore = create(set => ({
       const session = await account.createEmailSession(email, password);
       const accountDetails = await account.get();
 
-      set({ current: session, user: accountDetails, isLoading: false });
+      set({ current: session, user: accountDetails, isLoading: false, errors: {} });
     } catch (error) {
       set({ isLoading: false, errors: error });
       console.error('Login failed:', error);
@@ -25,7 +25,7 @@ const useAuthStore = create(set => ({
   logoutUser: async () => {
     try {
       await account.deleteSession('current');
-      set({ current: null, user: null });
+      set({ current: null, user: null, errors: {} });
     } catch (error) {
       set({ errors: error });
       console.error('Logout failed:', error);
@@ -40,7 +40,7 @@ const useAuthStore = create(set => ({
       const session = await account.createEmailSession(email, password);
       const accountDetails = await account.get();
 
-      set({ current: session, user: accountDetails, isLoading: false });
+      set({ current: session, user: accountDetails, isLoading: false, errors: {} });
     } catch (error) {
       set({ isLoading: false, errors: error });
       console.error('Registration failed:', error);
@@ -50,7 +50,7 @@ const useAuthStore = create(set => ({
   persistUserInfo: async () => {
     try {
       let accountDetails = await account.get();
-      set({ user: accountDetails });
+      set({ user: accountDetails, errors: {} });
     } catch (error) {
       set({ user: null, errors: error });
     }

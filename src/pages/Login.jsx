@@ -16,6 +16,9 @@ const Login = () => {
 
   const loginUser = useAuthStore(state => state.loginUser);
   const isLoading = useAuthStore(state => state.isLoading);
+  const authErrors = useAuthStore(state => state.errors);
+
+  const invalidCredentials = authErrors?.type === 'user_invalid_credentials';
 
   const {
     register,
@@ -26,7 +29,7 @@ const Login = () => {
   const onSubmit = async data => {
     await loginUser(data.email, data.password);
 
-    if (!isLoading) navigate('/');
+    if (!isLoading && !authErrors) navigate('/');
   };
 
   if (isLoading) {
@@ -52,6 +55,7 @@ const Login = () => {
             className='my-4 rounded bg-gray-100 px-3 py-2 outline-none'
           />
           <ValidationMessage message={errors.password?.message} />
+          {invalidCredentials && <ValidationMessage message={authErrors.message} />}
           <button
             type='submit'
             className='mx-auto my-8 w-28 cursor-pointer rounded bg-indigo-500 py-2 font-semibold text-white'
