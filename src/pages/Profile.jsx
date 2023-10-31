@@ -1,6 +1,9 @@
+import useUserStore from '../app/store';
 import defaultProfileImg from '../assets/defaultProfileImageMock.png';
 
 const Profile = () => {
+  const user = useUserStore(state => state.user);
+
   return (
     <>
       <div className='mt-20 h-72 bg-[#242538]'>
@@ -13,7 +16,7 @@ const Profile = () => {
             />
           </div>
           <div className='relative top-2 w-full px-8 text-white'>
-            <h1 className='text-2xl font-semibold'>Ankrath</h1>
+            <h1 className='text-2xl font-semibold'>{user.name}</h1>
           </div>
         </div>
       </div>

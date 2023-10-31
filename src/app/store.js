@@ -1,37 +1,58 @@
 import { create } from 'zustand';
 
-import { account } from '../lib/appwrite';
+import { account } from '../appwriteConfig';
 
 const useUserStore = create(set => ({
   current: null,
-  loading: false,
-  login: async (email, password) => {
-    set({ loading: true });
+  user: null,
+  isLoading: false,
+  errors: {},
+
+  loginUser: async (email, password) => {
+    set({ isLoading: true });
+
     try {
-      const loggedIn = await account.createEmailSession(email, password);
-      set({ current: loggedIn, loading: false });
+      const session = await account.createEmailSession(email, password);
+      const accountDetails = await account.get();
+
+      set({ current: session, user: accountDetails, isLoading: false });
     } catch (error) {
-      set({ loading: false });
+      set({ isLoading: false, errors: error });
       console.error('Login failed:', error);
     }
   },
-  logout: async () => {
+
+  logoutUser: async () => {
     try {
       await account.deleteSession('current');
-      set({ current: null });
+      set({ current: null, user: null });
     } catch (error) {
+      set({ errors: error });
       console.error('Logout failed:', error);
     }
   },
-  register: async (id, email, password, username) => {
-    set({ loading: true });
+
+  registerUser: async (id, email, password, username) => {
+    set({ isLoading: true });
+
     try {
       await account.create(id, email, password, username);
-      const loggedIn = await account.createEmailSession(email, password);
-      set({ current: loggedIn, loading: false });
+      const session = await account.createEmailSession(email, password);
+      const accountDetails = await account.get();
+
+      set({ current: session, user: accountDetails, isLoading: false });
     } catch (error) {
-      set({ loading: false });
+      set({ isLoading: false, errors: error });
       console.error('Registration failed:', error);
+    }
+  },
+
+  persistUserInfo: async () => {
+    try {
+      let accountDetails = await account.get();
+      set({ user: accountDetails });
+    } catch (error) {
+      set({ user: null, errors: error });
     }
   },
 }));

@@ -8,11 +8,16 @@ import useUserStore from '../app/store';
 import Loading from '../components/Loading';
 import ValidationMessage from '../components/ValidationMessage';
 import { signUpSchema } from '../constants/formSchemas';
+import { useRedirectIfAuthenticated } from '../hooks/authHooks';
 
 const SignUp = () => {
+  useRedirectIfAuthenticated();
   const navigate = useNavigate();
-  const registerUser = useUserStore(state => state.register);
-  const isLoading = useUserStore(state => state.loading);
+
+  const { registerUser, isLoading } = useUserStore(state => ({
+    registerUser: state.registerUser,
+    isLoading: state.isLoading,
+  }));
 
   const {
     register,

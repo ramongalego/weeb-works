@@ -7,8 +7,10 @@ import logo from '../assets/ww.png';
 import Search from './Search';
 
 const Navbar = () => {
-  const currentUser = useUserStore(state => state.current);
-  const logout = useUserStore(state => state.logout);
+  const { user, logoutUser } = useUserStore(state => ({
+    user: state.user,
+    logoutUser: state.logoutUser,
+  }));
 
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [isSticky, setIsSticky] = useState(true);
@@ -46,7 +48,7 @@ const Navbar = () => {
             </Link>
             <ul className='ml-10 flex cursor-pointer'>
               <li className='ml-4'>
-                <Link to='/user/Ankrath'>Profile</Link>
+                <Link to={`/user/${user?.name}`}>Profile</Link>
               </li>
               <li className='ml-6'>
                 <Link to='/anime'>Browse</Link>
@@ -56,13 +58,9 @@ const Navbar = () => {
           <div className='flex items-center'>
             <Search isNavbar />
             <p className='ml-6 cursor-pointer'>
-              {currentUser ? (
-                <button onClick={logout}>Logout</button>
-              ) : (
-                <Link to='/login'>Login</Link>
-              )}
+              {user ? <button onClick={logoutUser}>Logout</button> : <Link to='/login'>Login</Link>}
             </p>
-            {!currentUser && (
+            {!user && (
               <p className='ml-6 cursor-pointer rounded bg-indigo-500 px-3 py-1 font-semibold'>
                 <Link to='/signup'>Sign Up</Link>
               </p>

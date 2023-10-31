@@ -11,7 +11,7 @@ export const signUpSchema = yup.object({
     .required('The username field is required'),
   password: yup
     .string()
-    .min(8, 'The password must be at least 6 characters')
+    .min(8, 'The password must be at least 8 characters')
     .required('The password field is required'),
   passwordConfirmation: yup
     .string()
@@ -26,6 +26,6 @@ export const loginSchema = yup.object({
     .required('The email field is required'),
   password: yup
     .string()
-    .min(8, 'The password must be at least 6 characters')
+    .min(8, 'The password must be at least 8 characters')
     .required('The password field is required'),
 });

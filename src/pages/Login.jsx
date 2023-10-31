@@ -7,11 +7,16 @@ import useUserStore from '../app/store';
 import Loading from '../components/Loading';
 import ValidationMessage from '../components/ValidationMessage';
 import { loginSchema } from '../constants/formSchemas';
+import { useRedirectIfAuthenticated } from '../hooks/authHooks';
 
 const Login = () => {
+  useRedirectIfAuthenticated();
   const navigate = useNavigate();
-  const login = useUserStore(state => state.login);
-  const isLoading = useUserStore(state => state.loading);
+
+  const { loginUser, isLoading } = useUserStore(state => ({
+    loginUser: state.loginUser,
+    isLoading: state.isLoading,
+  }));
 
   const {
     register,
@@ -20,7 +25,7 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(loginSchema) });
 
   const onSubmit = async data => {
-    await login(data.email, data.password);
+    await loginUser(data.email, data.password);
 
     if (!isLoading) navigate('/');
   };
