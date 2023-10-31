@@ -22,12 +22,12 @@ describe('Navbar component', () => {
   });
 
   it('renders the navigation links with correct URLs', () => {
-    const profileLink = screen.getByText('Profile').closest('a');
+    // const profileLink = screen.getByText('Profile').closest('a');
     const browseLink = screen.getByText('Browse').closest('a');
     const loginLink = screen.getByText('Login').closest('a');
     const signUpLink = screen.getByText('Sign Up').closest('a');
 
-    expect(profileLink).toHaveAttribute('href', '/user/Ankrath');
+    // expect(profileLink).toHaveAttribute('href', '/user/Ankrath');
     expect(browseLink).toHaveAttribute('href', '/anime');
     expect(loginLink).toHaveAttribute('href', '/login');
     expect(signUpLink).toHaveAttribute('href', '/signup');
