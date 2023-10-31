@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import useUserStore from '../app/store';
+import useAuthStore from '../app/store';
 import logo from '../assets/ww.png';
 
 import Search from './Search';
 
 const Navbar = () => {
-  const { user, logoutUser } = useUserStore(state => ({
-    user: state.user,
-    logoutUser: state.logoutUser,
-  }));
+  const user = useAuthStore(state => state.user);
+  const logoutUser = useAuthStore(state => state.logoutUser);
 
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [isSticky, setIsSticky] = useState(true);
@@ -43,7 +41,7 @@ const Navbar = () => {
           <div className='flex items-center'>
             <Link to='/'>
               <div className='flex cursor-pointer items-center'>
-                <img className='h-10 w-auto' src={logo} alt='WeebWorks' />
+                <img className='h-8 w-auto' src={logo} alt='WeebWorks' />
               </div>
             </Link>
             <ul className='ml-10 flex cursor-pointer'>

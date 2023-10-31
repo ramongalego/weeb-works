@@ -1,6 +1,6 @@
 export const BASE_URL = 'https://api.jikan.moe/v4';
 
-export const QUERY_STALE_TIME = 60000;
+export const QUERY_STALE_TIME = 60000 * 60;
 
 export const INITIAL_PAGE = 1;
 

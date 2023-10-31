@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import useUserStore from './app/store';
+import useAuthStore from './app/store';
 import Navbar from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
 import Pages from './pages/Pages';
@@ -11,7 +11,7 @@ import Pages from './pages/Pages';
 const queryClient = new QueryClient();
 
 const App = () => {
-  const persistUserInfo = useUserStore(state => state.persistUserInfo);
+  const persistUserInfo = useAuthStore(state => state.persistUserInfo);
 
   useEffect(() => {
     persistUserInfo();

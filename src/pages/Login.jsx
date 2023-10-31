@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import useUserStore from '../app/store';
+import useAuthStore from '../app/store';
 import Loading from '../components/Loading';
 import ValidationMessage from '../components/ValidationMessage';
 import { loginSchema } from '../constants/formSchemas';
@@ -11,12 +11,11 @@ import { useRedirectIfAuthenticated } from '../hooks/authHooks';
 
 const Login = () => {
   useRedirectIfAuthenticated();
+
   const navigate = useNavigate();
 
-  const { loginUser, isLoading } = useUserStore(state => ({
-    loginUser: state.loginUser,
-    isLoading: state.isLoading,
-  }));
+  const loginUser = useAuthStore(state => state.loginUser);
+  const isLoading = useAuthStore(state => state.isLoading);
 
   const {
     register,

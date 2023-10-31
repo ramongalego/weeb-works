@@ -1,8 +1,8 @@
-import useUserStore from '../app/store';
-import defaultProfileImg from '../assets/defaultProfileImageMock.png';
+import useAuthStore from '../app/store';
+import defaultProfileImage from '../assets/defaultProfileImage.png';
 
 const Profile = () => {
-  const user = useUserStore(state => state.user);
+  const user = useAuthStore(state => state.user);
 
   return (
     <>
@@ -10,9 +10,9 @@ const Profile = () => {
         <div className='mx-auto flex max-w-7xl items-end px-2 pt-24 sm:px-6 lg:px-8'>
           <div className='relative top-8 h-40 w-48 rounded'>
             <img
-              src={defaultProfileImg}
+              src={defaultProfileImage}
               alt='Profile Image'
-              className='h-full w-full rounded bg-white'
+              className='h-full w-full rounded bg-indigo-500'
             />
           </div>
           <div className='relative top-2 w-full px-8 text-white'>

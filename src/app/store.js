@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 import { account } from '../appwriteConfig';
 
-const useUserStore = create(set => ({
+const useAuthStore = create(set => ({
   current: null,
   user: null,
   isLoading: false,
@@ -57,4 +57,4 @@ const useUserStore = create(set => ({
   },
 }));
 
-export default useUserStore;
+export default useAuthStore;
