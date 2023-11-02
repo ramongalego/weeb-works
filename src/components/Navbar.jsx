@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import useAuthStore from '../app/store';
+import useAuthStore from '../app/useAuthStore';
 import logo from '../assets/ww.png';
 
 import Search from './Search';

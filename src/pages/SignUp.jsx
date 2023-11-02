@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import useAuthStore from '../app/store';
+import useAuthStore from '../app/useAuthStore';
 import Loading from '../components/Loading';
 import ValidationMessage from '../components/ValidationMessage';
 import { signUpSchema } from '../constants/formSchemas';

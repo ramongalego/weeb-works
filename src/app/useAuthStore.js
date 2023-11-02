@@ -47,7 +47,7 @@ const useAuthStore = create(set => ({
     }
   },
 
-  persistUserInfo: async () => {
+  persistUserData: async () => {
     try {
       let accountDetails = await account.get();
       set({ user: accountDetails, errors: {} });

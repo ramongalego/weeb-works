@@ -1,4 +1,4 @@
-import useAuthStore from '../app/store';
+import useAuthStore from '../app/useAuthStore';
 import defaultProfileImage from '../assets/defaultProfileImage.png';
 
 const Profile = () => {
