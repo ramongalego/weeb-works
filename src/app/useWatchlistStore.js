@@ -63,7 +63,7 @@ const useWatchlistStore = create(set => ({
     try {
       const response = await databases.listDocuments(DATABASE_ID, COLLECTION_ID, [
         Query.equal('userId', userId),
-        Query.orderDesc('$createdAt'),
+        Query.orderAsc('$createdAt'),
         Query.limit(10),
       ]);
 
