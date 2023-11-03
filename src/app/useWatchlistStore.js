@@ -48,6 +48,29 @@ const useWatchlistStore = create(set => ({
     }
   },
 
+  removeFromWatchlist: async documentId => {
+    const user = useAuthStore.getState().user;
+
+    if (!user) {
+      console.error('No user found');
+      return;
+    }
+
+    set({ isLoading: true });
+
+    try {
+      await databases.deleteDocument(DATABASE_ID, COLLECTION_ID, documentId);
+
+      set(state => ({
+        watchlist: state.watchlist.filter(item => item.$id !== documentId),
+        isLoading: false,
+      }));
+    } catch (error) {
+      console.error('Remove from watchlist failed:', error);
+      set({ isLoading: false, errors: error });
+    }
+  },
+
   getUserWatchlistData: async () => {
     const user = useAuthStore.getState().user;
 

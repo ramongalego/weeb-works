@@ -10,6 +10,7 @@ const AnimeDetailsActions = ({ data }) => {
   const getUserWatchlistData = useWatchlistStore(state => state.getUserWatchlistData);
   const watchlist = useWatchlistStore(state => state.watchlist);
   const addToWatchlist = useWatchlistStore(state => state.addToWatchlist);
+  const removeFromWatchlist = useWatchlistStore(state => state.removeFromWatchlist);
 
   useEffect(() => {
     if (user) {
@@ -17,18 +18,20 @@ const AnimeDetailsActions = ({ data }) => {
     }
   }, [user, getUserWatchlistData]);
 
-  const isAdded = watchlist.find(item => item.animeId === data.mal_id);
+  const animeInWatchlist = watchlist.find(item => item.animeId === data.mal_id);
+
+  const handleWatchlistAction = () => {
+    if (animeInWatchlist) {
+      removeFromWatchlist(animeInWatchlist.$id);
+    } else {
+      addToWatchlist(data);
+    }
+  };
 
   return (
     <div className='mt-2 flex w-full justify-between text-white'>
-      <button
-        className='w-9/12 rounded bg-indigo-500 py-1'
-        onClick={() => addToWatchlist(data)}
-        disabled={isAdded}
-      >
-        <p className={`${isAdded ? 'opacity-75' : ''}`}>
-          {isAdded ? 'Watchlisted' : 'Add to Watchlist'}
-        </p>
+      <button className='w-9/12 rounded bg-indigo-500 py-1' onClick={handleWatchlistAction}>
+        <p>{animeInWatchlist ? 'Remove from List' : 'Add to List'}</p>
       </button>
       <button className='rounded bg-red-600 px-2 py-1'>
         <HeartIcon className='h-5 w-5' />

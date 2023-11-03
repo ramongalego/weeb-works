@@ -7,6 +7,6 @@ describe('AnimeDetailsActions component', () => {
   it('renders without crashing', () => {
     render(<AnimeDetailsActions />);
 
-    screen.getByText('Add to List');
+    screen.getByText('Add to Watchlist');
   });
 });
