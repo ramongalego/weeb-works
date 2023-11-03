@@ -12,13 +12,13 @@ import Pages from './pages/Pages';
 const queryClient = new QueryClient();
 
 const App = () => {
-  const persistUserData = useAuthStore(state => state.persistUserData);
-  const persistWatchlistData = useWatchlistStore(state => state.persistWatchlistData);
+  const getUserData = useAuthStore(state => state.getUserData);
+  const getUserWatchlistData = useWatchlistStore(state => state.getUserWatchlistData);
 
   useEffect(() => {
-    persistUserData();
-    persistWatchlistData();
-  }, [persistUserData, persistWatchlistData]);
+    getUserData();
+    getUserWatchlistData();
+  }, [getUserData, getUserWatchlistData]);
 
   return (
     <Router>

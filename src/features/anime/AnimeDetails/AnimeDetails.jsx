@@ -56,7 +56,7 @@ const AnimeDetails = () => {
 
       <div className='mx-auto my-8 flex max-w-7xl px-2 sm:px-6 lg:px-8'>
         <div className='w-64'>
-          <AnimeDetailsActions />
+          <AnimeDetailsActions data={data} />
           <AnimeDetailsInfo data={data} />
         </div>
         <div className='mt-24 w-full px-10 text-gray-500'>

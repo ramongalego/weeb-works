@@ -1,8 +1,21 @@
+import { useEffect } from 'react';
+
 import useAuthStore from '../app/useAuthStore';
+import useWatchlistStore from '../app/useWatchlistStore';
 import defaultProfileImage from '../assets/defaultProfileImage.png';
+import UserAnimeList from '../components/UserAnimeList';
 
 const Profile = () => {
   const user = useAuthStore(state => state.user);
+
+  const getUserWatchlistData = useWatchlistStore(state => state.getUserWatchlistData);
+  const watchlist = useWatchlistStore(state => state.watchlist);
+
+  useEffect(() => {
+    if (user) {
+      getUserWatchlistData();
+    }
+  }, [user, getUserWatchlistData]);
 
   return (
     <>
@@ -21,7 +34,9 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className='mx-auto my-14 flex max-w-7xl px-2 sm:px-6 lg:px-8'>Content</div>
+      <div className='mx-auto my-14 flex max-w-7xl px-2 sm:px-6 lg:px-8'>
+        {watchlist.length > 0 && <UserAnimeList data={watchlist} title='Watchlist' />}
+      </div>
     </>
   );
 };
