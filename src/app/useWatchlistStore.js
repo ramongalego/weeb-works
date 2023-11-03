@@ -1,11 +1,8 @@
 import { create } from 'zustand';
 
-import { databases, ID, Query } from '../appwriteConfig';
+import { databases, ID, Query, DATABASE_ID, COLLECTION_ID } from '../appwriteConfig';
 
 import useAuthStore from './useAuthStore';
-
-const DATABASE_ID = import.meta.env.VITE_DATABASE_ID;
-const COLLECTION_ID = import.meta.env.VITE_WATCHLIST_COLLECTION_ID;
 
 const useWatchlistStore = create(set => ({
   watchlist: [],
@@ -17,7 +14,6 @@ const useWatchlistStore = create(set => ({
     const user = useAuthStore.getState().user;
 
     if (!user) {
-      console.error('No user found');
       return;
     }
 
@@ -52,7 +48,6 @@ const useWatchlistStore = create(set => ({
     const user = useAuthStore.getState().user;
 
     if (!user) {
-      console.error('No user found');
       return;
     }
 
@@ -75,7 +70,6 @@ const useWatchlistStore = create(set => ({
     const user = useAuthStore.getState().user;
 
     if (!user) {
-      console.error('No user found');
       return;
     }
 
@@ -91,7 +85,6 @@ const useWatchlistStore = create(set => ({
 
       set({ watchlist: response.documents, isLoading: false });
     } catch (error) {
-      console.error('Failed to persist watchlist data:', error);
       set({ isLoading: false, errors: error });
     }
   },
