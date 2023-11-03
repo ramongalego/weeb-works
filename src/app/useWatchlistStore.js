@@ -21,9 +21,9 @@ const useWatchlistStore = create(set => ({
       return;
     }
 
-    const userId = user.$id;
-
     set({ isLoading: true });
+
+    const userId = user.$id;
 
     try {
       const documentData = {
@@ -56,15 +56,14 @@ const useWatchlistStore = create(set => ({
       return;
     }
 
-    const userId = user.$id;
-
     set({ isLoading: true });
+
+    const userId = user.$id;
 
     try {
       const response = await databases.listDocuments(DATABASE_ID, COLLECTION_ID, [
         Query.equal('userId', userId),
         Query.orderAsc('$createdAt'),
-        Query.limit(10),
       ]);
 
       set({ watchlist: response.documents, isLoading: false });
