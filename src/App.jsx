@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import useAuthStore from './app/useAuthStore';
+import useFavoritesStore from './app/useFavoritesStore';
 import useWatchlistStore from './app/useWatchlistStore';
 import Navbar from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
@@ -14,11 +15,13 @@ const queryClient = new QueryClient();
 const App = () => {
   const getUserData = useAuthStore(state => state.getUserData);
   const getUserWatchlistData = useWatchlistStore(state => state.getUserWatchlistData);
+  const getUserFavoritesData = useFavoritesStore(state => state.getUserFavoritesData);
 
   useEffect(() => {
     getUserData();
     getUserWatchlistData();
-  }, [getUserData, getUserWatchlistData]);
+    getUserFavoritesData();
+  }, [getUserData, getUserWatchlistData, getUserFavoritesData]);
 
   return (
     <Router>

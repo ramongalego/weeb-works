@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import useAuthStore from '../app/useAuthStore';
+import useFavoritesStore from '../app/useFavoritesStore';
 import useWatchlistStore from '../app/useWatchlistStore';
 import defaultProfileImage from '../assets/defaultProfileImage.png';
 import UserAnimeList from '../components/UserAnimeList';
@@ -11,11 +12,15 @@ const Profile = () => {
   const getUserWatchlistData = useWatchlistStore(state => state.getUserWatchlistData);
   const watchlist = useWatchlistStore(state => state.watchlist);
 
+  const getUserFavoritesData = useFavoritesStore(state => state.getUserFavoritesData);
+  const favorites = useFavoritesStore(state => state.favorites);
+
   useEffect(() => {
     if (user) {
       getUserWatchlistData();
+      getUserFavoritesData();
     }
-  }, [user, getUserWatchlistData]);
+  }, [user, getUserWatchlistData, getUserFavoritesData]);
 
   return (
     <>
@@ -34,8 +39,9 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className='mx-auto my-14 flex max-w-7xl px-2 sm:px-6 lg:px-8'>
-        {watchlist.length > 0 && <UserAnimeList data={watchlist} title='Watchlist' />}
+      <div className='mx-auto my-14 flex max-w-7xl flex-col px-2 sm:px-6 lg:px-8'>
+        {watchlist.length > 0 && <UserAnimeList data={watchlist} title='watchlist' />}
+        {favorites.length > 0 && <UserAnimeList data={favorites} title='favorites' />}
       </div>
     </>
   );

@@ -1,7 +1,8 @@
 import { Client, Account, Databases } from 'appwrite';
 
 export const DATABASE_ID = import.meta.env.VITE_DATABASE_ID;
-export const COLLECTION_ID = import.meta.env.VITE_WATCHLIST_COLLECTION_ID;
+export const WATCHLIST_COLLECTION_ID = import.meta.env.VITE_WATCHLIST_COLLECTION_ID;
+export const FAVORITES_COLLECTION_ID = import.meta.env.VITE_FAVORITES_COLLECTION_ID;
 
 export const client = new Client();
 
