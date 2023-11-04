@@ -1,6 +1,6 @@
-# WeebWorks
+# Anime List App
 
-Anime List App
+🔗 [WeebWorks](https://weeb-works.vercel.app/)
 
 ## Tech Stack
 
