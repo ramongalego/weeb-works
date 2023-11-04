@@ -9,18 +9,18 @@ import UserAnimeList from '../components/UserAnimeList';
 const Profile = () => {
   const user = useAuthStore(state => state.user);
 
-  const getUserWatchlistData = useWatchlistStore(state => state.getUserWatchlistData);
+  const fetchUserWatchlistData = useWatchlistStore(state => state.fetchUserWatchlistData);
   const watchlist = useWatchlistStore(state => state.watchlist);
 
-  const getUserFavoritesData = useFavoritesStore(state => state.getUserFavoritesData);
+  const fetchUserFavoritesData = useFavoritesStore(state => state.fetchUserFavoritesData);
   const favorites = useFavoritesStore(state => state.favorites);
 
   useEffect(() => {
     if (user) {
-      getUserWatchlistData();
-      getUserFavoritesData();
+      fetchUserWatchlistData();
+      fetchUserFavoritesData();
     }
-  }, [user, getUserWatchlistData, getUserFavoritesData]);
+  }, [user, fetchUserWatchlistData, fetchUserFavoritesData]);
 
   return (
     <>

@@ -1,48 +1,14 @@
 import { HeartIcon } from '@heroicons/react/24/solid';
-import { useEffect } from 'react';
 
 import useAuthStore from '../../../app/useAuthStore';
-import useFavoritesStore from '../../../app/useFavoritesStore';
-import useWatchlistStore from '../../../app/useWatchlistStore';
+import { useFavorites } from '../../../hooks/useFavorites';
+import { useWatchlist } from '../../../hooks/useWatchlist';
 
 const AnimeDetailsActions = ({ data }) => {
   const user = useAuthStore(state => state.user);
 
-  const getUserWatchlistData = useWatchlistStore(state => state.getUserWatchlistData);
-  const watchlist = useWatchlistStore(state => state.watchlist);
-  const addToWatchlist = useWatchlistStore(state => state.addToWatchlist);
-  const removeFromWatchlist = useWatchlistStore(state => state.removeFromWatchlist);
-
-  const getUserFavoritesData = useFavoritesStore(state => state.getUserFavoritesData);
-  const favorites = useFavoritesStore(state => state.favorites);
-  const addToFavorites = useFavoritesStore(state => state.addToFavorites);
-  const removeFromFavorites = useFavoritesStore(state => state.removeFromFavorites);
-
-  const animeInWatchlist = watchlist.find(item => item.animeId === data.mal_id);
-  const animeInFavorites = favorites.find(item => item.animeId === data.mal_id);
-
-  useEffect(() => {
-    if (user) {
-      getUserWatchlistData();
-      getUserFavoritesData();
-    }
-  }, [user, getUserWatchlistData, getUserFavoritesData]);
-
-  const handleWatchlistAction = () => {
-    if (animeInWatchlist) {
-      removeFromWatchlist(animeInWatchlist.$id);
-    } else {
-      addToWatchlist(data);
-    }
-  };
-
-  const handleFavoritesAction = () => {
-    if (animeInFavorites) {
-      removeFromFavorites(animeInFavorites.$id);
-    } else {
-      addToFavorites(data);
-    }
-  };
+  const { handleWatchlistAction, animeInWatchlist } = useWatchlist(user, data);
+  const { handleFavoritesAction, animeInFavorites } = useFavorites(user, data);
 
   return (
     <div className='mt-2 flex w-full justify-between text-white'>

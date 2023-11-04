@@ -65,7 +65,7 @@ const useWatchlistStore = create(set => ({
     }
   },
 
-  getUserWatchlistData: async () => {
+  fetchUserWatchlistData: async () => {
     const user = useAuthStore.getState().user;
 
     if (!user) {

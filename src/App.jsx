@@ -13,15 +13,15 @@ import Pages from './pages/Pages';
 const queryClient = new QueryClient();
 
 const App = () => {
-  const getUserData = useAuthStore(state => state.getUserData);
-  const getUserWatchlistData = useWatchlistStore(state => state.getUserWatchlistData);
-  const getUserFavoritesData = useFavoritesStore(state => state.getUserFavoritesData);
+  const fetchUserData = useAuthStore(state => state.fetchUserData);
+  const fetchUserWatchlistData = useWatchlistStore(state => state.fetchUserWatchlistData);
+  const fetchUserFavoritesData = useFavoritesStore(state => state.fetchUserFavoritesData);
 
   useEffect(() => {
-    getUserData();
-    getUserWatchlistData();
-    getUserFavoritesData();
-  }, [getUserData, getUserWatchlistData, getUserFavoritesData]);
+    fetchUserData();
+    fetchUserWatchlistData();
+    fetchUserFavoritesData();
+  }, [fetchUserData, fetchUserWatchlistData, fetchUserFavoritesData]);
 
   return (
     <Router>

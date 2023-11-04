@@ -65,7 +65,7 @@ const useFavoritesStore = create(set => ({
     }
   },
 
-  getUserFavoritesData: async () => {
+  fetchUserFavoritesData: async () => {
     const user = useAuthStore.getState().user;
 
     if (!user) {
