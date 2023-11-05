@@ -8,11 +8,8 @@ import useAuthStore from '../app/useAuthStore';
 import Loading from '../components/Loading';
 import ValidationMessage from '../components/ValidationMessage';
 import { signUpSchema } from '../constants/formSchemas';
-import { useRedirectIfAuthenticated } from '../hooks/authHooks';
 
 const SignUp = () => {
-  useRedirectIfAuthenticated();
-
   const navigate = useNavigate();
 
   const registerUser = useAuthStore(state => state.registerUser);
@@ -47,6 +44,7 @@ const SignUp = () => {
             className='mb-2 mt-4 rounded bg-gray-100 px-3 py-2 outline-none'
           />
           <ValidationMessage message={errors.email?.message} />
+
           <input
             {...register('username')}
             type='text'
@@ -54,6 +52,7 @@ const SignUp = () => {
             className='mb-2 mt-4 rounded bg-gray-100 px-3 py-2 outline-none'
           />
           <ValidationMessage message={errors.username?.message} />
+
           <input
             {...register('password')}
             type='password'
@@ -61,6 +60,7 @@ const SignUp = () => {
             className='mb-2 mt-4 rounded bg-gray-100 px-3 py-2 outline-none'
           />
           <ValidationMessage message={errors.password?.message} />
+
           <input
             {...register('passwordConfirmation')}
             type='password'
@@ -68,6 +68,7 @@ const SignUp = () => {
             className='mb-2 mt-4 rounded bg-gray-100 px-3 py-2 outline-none'
           />
           <ValidationMessage message={errors.passwordConfirmation?.message} />
+
           <button
             type='submit'
             className='mx-auto my-8 w-28 cursor-pointer rounded bg-indigo-500 py-2 font-semibold text-white'

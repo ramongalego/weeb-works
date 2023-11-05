@@ -5,7 +5,7 @@ import {
   setupIntersectionMocking,
   resetIntersectionMocking,
 } from 'react-intersection-observer/test-utils';
-import { MemoryRouter as Router, Routes, Route } from 'react-router';
+import { MemoryRouter, Routes, Route } from 'react-router';
 import { describe, it, expect } from 'vitest';
 
 import Browse from '../Browse';
@@ -21,11 +21,11 @@ describe('Browse component', () => {
 
   const Wrapper = () => (
     <QueryClientProvider client={queryClient}>
-      <Router initialEntries={['/anime']}>
+      <MemoryRouter initialEntries={['/anime']}>
         <Routes>
           <Route path='/anime' element={<Browse />} />
         </Routes>
-      </Router>
+      </MemoryRouter>
     </QueryClientProvider>
   );
 

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter as Router } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
 import { describe, beforeEach, it, expect } from 'vitest';
 
 import Navbar from '../Navbar';
@@ -7,9 +7,9 @@ import Navbar from '../Navbar';
 describe('Navbar component', () => {
   beforeEach(() => {
     render(
-      <Router>
+      <StaticRouter>
         <Navbar />
-      </Router>,
+      </StaticRouter>,
     );
   });
 

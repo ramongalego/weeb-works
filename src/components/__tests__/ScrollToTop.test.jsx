@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect, vi } from 'vitest';
 
 import ScrollToTop from '../ScrollToTop';
@@ -9,11 +9,9 @@ describe('ScrollToTop component', () => {
     const mockScrollTo = vi.spyOn(globalThis.window, 'scrollTo').mockImplementation(() => {});
 
     render(
-      <Router initialEntries={['/']}>
-        <Routes>
-          <Route path='*' element={<ScrollToTop />} />
-        </Routes>
-      </Router>,
+      <MemoryRouter>
+        <ScrollToTop />
+      </MemoryRouter>,
     );
 
     window.history.pushState({}, '', '/some-path');

@@ -1,6 +1,6 @@
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
 import { describe, it, beforeEach, expect } from 'vitest';
 
 import SignUp from '../SignUp';
@@ -8,9 +8,9 @@ import SignUp from '../SignUp';
 describe('SignUp component', () => {
   beforeEach(() =>
     render(
-      <MemoryRouter>
+      <StaticRouter>
         <SignUp />
-      </MemoryRouter>,
+      </StaticRouter>,
     ),
   );
 

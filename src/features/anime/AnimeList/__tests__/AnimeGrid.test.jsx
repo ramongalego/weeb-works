@@ -1,5 +1,5 @@
 import { screen, render } from '@testing-library/react';
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
 import { describe, it } from 'vitest';
 
 import AnimeGrid from '../AnimeGrid';
@@ -40,11 +40,9 @@ describe('AnimeGrid component', () => {
     ];
 
     render(
-      <Router>
-        <Routes>
-          <Route path='/' element={<AnimeGrid data={mockAnime} />} />
-        </Routes>
-      </Router>,
+      <StaticRouter>
+        <AnimeGrid data={mockAnime} />
+      </StaticRouter>,
     );
 
     mockAnime.forEach(item => {

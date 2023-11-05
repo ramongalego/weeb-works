@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { screen, render } from '@testing-library/react';
-import { MemoryRouter as Router, Routes, Route } from 'react-router';
+import { StaticRouter } from 'react-router-dom/server';
 import { describe, it, expect } from 'vitest';
 
 import Home from '../Home';
@@ -16,11 +16,9 @@ describe('Home component', () => {
 
   const Wrapper = () => (
     <QueryClientProvider client={queryClient}>
-      <Router initialEntries={['/']}>
-        <Routes>
-          <Route path='/' element={<Home />} />
-        </Routes>
-      </Router>
+      <StaticRouter>
+        <Home />
+      </StaticRouter>
     </QueryClientProvider>
   );
 

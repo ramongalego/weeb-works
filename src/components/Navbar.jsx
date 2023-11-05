@@ -45,10 +45,12 @@ const Navbar = () => {
               </div>
             </Link>
             <ul className='ml-10 flex cursor-pointer'>
+              {user && (
+                <li className='ml-4 mr-2'>
+                  <Link to={`/user/${user?.name}`}>Profile</Link>
+                </li>
+              )}
               <li className='ml-4'>
-                <Link to={`/user/${user?.name}`}>Profile</Link>
-              </li>
-              <li className='ml-6'>
                 <Link to='/anime'>Browse</Link>
               </li>
             </ul>

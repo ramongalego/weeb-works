@@ -20,7 +20,8 @@ const Profile = () => {
       fetchUserWatchlistData();
       fetchUserFavoritesData();
     }
-  }, [user, fetchUserWatchlistData, fetchUserFavoritesData]);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <>
@@ -34,7 +35,7 @@ const Profile = () => {
             />
           </div>
           <div className='relative top-2 w-full px-8 text-white'>
-            <h1 className='text-2xl font-semibold'>{user.name}</h1>
+            <h1 className='text-2xl font-semibold'>{user?.name}</h1>
           </div>
         </div>
       </div>

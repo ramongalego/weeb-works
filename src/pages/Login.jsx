@@ -7,11 +7,8 @@ import useAuthStore from '../app/useAuthStore';
 import Loading from '../components/Loading';
 import ValidationMessage from '../components/ValidationMessage';
 import { loginSchema } from '../constants/formSchemas';
-import { useRedirectIfAuthenticated } from '../hooks/authHooks';
 
 const Login = () => {
-  useRedirectIfAuthenticated();
-
   const navigate = useNavigate();
 
   const loginUser = useAuthStore(state => state.loginUser);

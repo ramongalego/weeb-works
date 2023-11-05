@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
+import { MemoryRouter, Routes, Route, useSearchParams } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 
 import Filter from '../Filter';
@@ -24,11 +24,11 @@ const FilterWithSearchParams = () => {
 describe('Filter component', () => {
   const renderWithRouter = (element, initialEntries = ['/']) => {
     return render(
-      <Router initialEntries={initialEntries}>
+      <MemoryRouter initialEntries={initialEntries}>
         <Routes>
           <Route path='/*' element={element} />
         </Routes>
-      </Router>,
+      </MemoryRouter>,
     );
   };
 

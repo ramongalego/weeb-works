@@ -19,11 +19,11 @@ const Pages = () => {
       <Route path='/anime/details/:id' element={<AnimeDetails />} />
       <Route path='*' element={<NotFound />} />
 
-      <Route path='/signup' element={<SignUp />} />
-      <Route path='/login' element={<Login />} />
+      <Route path='/user/:username' element={<Profile />} />
 
       <Route element={<PrivateRoutes />}>
-        <Route path='/user/:username' element={<Profile />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/login' element={<Login />} />
       </Route>
     </Routes>
   );
