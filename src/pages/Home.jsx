@@ -28,7 +28,7 @@ const Home = () => {
   const popularAnimeQuery = useAnimePreviewListQuery('popular', fetchMostPopularAnime);
 
   return (
-    <div className='mx-auto mb-8 mt-20 max-w-7xl px-2 pt-20 sm:px-6 lg:px-8'>
+    <div className='mx-auto mb-8 mt-10 max-w-7xl px-2 pt-20 sm:mt-20 sm:px-6 lg:px-8'>
       <h1 className='mb-6 text-3xl'>Explore Anime</h1>
       <Search />
 

@@ -37,8 +37,8 @@ const Navbar = () => {
         ${isSticky ? 'translate-y-0 transform' : '-translate-y-20 transform'}`}
     >
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
-        <div className='relative flex h-20 items-center justify-between'>
-          <div className='flex items-center'>
+        <div className='relative flex h-20 items-center justify-center sm:justify-between'>
+          <div className='text-md hidden items-center sm:flex'>
             <Link to='/'>
               <div className='flex cursor-pointer items-center'>
                 <img className='h-8 w-auto' src={logo} alt='WeebWorks' />
@@ -50,7 +50,7 @@ const Navbar = () => {
                   <Link to={`/user/${user?.name}`}>Profile</Link>
                 </li>
               )}
-              <li className='ml-4'>
+              <li className='ml-4 '>
                 <Link to='/anime'>Browse</Link>
               </li>
             </ul>
@@ -61,7 +61,7 @@ const Navbar = () => {
               {user ? <button onClick={logoutUser}>Logout</button> : <Link to='/login'>Login</Link>}
             </p>
             {!user && (
-              <p className='ml-6 cursor-pointer rounded bg-indigo-500 px-3 py-1 font-semibold'>
+              <p className='ml-6 cursor-pointer rounded bg-indigo-500 px-2 py-1 text-center font-semibold sm:px-3'>
                 <Link to='/signup'>Sign Up</Link>
               </p>
             )}

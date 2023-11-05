@@ -25,16 +25,16 @@ const Profile = () => {
 
   return (
     <>
-      <div className='mt-20 h-72 bg-[#242538]'>
+      <div className='h-72 bg-[#242538] sm:mt-20'>
         <div className='mx-auto flex max-w-7xl items-end px-2 pt-24 sm:px-6 lg:px-8'>
-          <div className='relative top-8 h-40 w-48 rounded'>
+          <div className='relative top-16 h-32 w-44 rounded sm:top-8 sm:h-40 sm:w-48'>
             <img
               src={defaultProfileImage}
               alt='Profile Image'
               className='h-full w-full rounded bg-indigo-500'
             />
           </div>
-          <div className='relative top-2 w-full px-8 text-white'>
+          <div className='relative top-10 w-full px-8 text-white sm:top-2'>
             <h1 className='text-2xl font-semibold'>{user?.name}</h1>
           </div>
         </div>

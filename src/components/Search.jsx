@@ -21,7 +21,7 @@ const Search = ({ isNavbar }) => {
         ref={inputRef}
         className={`${
           isNavbar
-            ? 'w-64 rounded-md py-2 pl-11 pr-4 text-gray-800 outline-none'
+            ? 'w-56 rounded-md py-2 pl-11 pr-4 text-gray-800 outline-none sm:w-64'
             : 'w-full rounded-md p-5 pl-12 text-xl outline-none'
         }`}
         placeholder={isNavbar ? 'Search WeebWorks' : 'What are you searching for?'}

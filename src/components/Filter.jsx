@@ -32,13 +32,13 @@ const Filter = ({ type, options, title }) => {
   }, [searchParams, type]);
 
   return (
-    <div className='flex flex-col'>
+    <div className='mt-4 flex flex-col sm:mt-0'>
       <label htmlFor={type} className='mb-2 text-sm font-medium capitalize'>
         {title || type}
       </label>
       <select
         id={type}
-        className='block w-52 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm outline-none'
+        className='block w-72 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm outline-none sm:w-52'
         onChange={handleChange}
         value={selectedFilter}
       >

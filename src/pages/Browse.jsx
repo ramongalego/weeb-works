@@ -7,7 +7,7 @@ import { AnimeList } from '../features/anime/AnimeList';
 import { useGenresQuery, useInfiniteAnimeDataQuery } from '../hooks/queryHooks';
 
 const renderFilterSection = genres => (
-  <div className='flex justify-between'>
+  <div className='-mt-10 flex flex-col items-center justify-between sm:-mt-0 sm:flex-row'>
     <Filter title='format' type='type' options={FORMAT_OPTIONS} />
     <Filter type='status' options={STATUS_OPTIONS} />
     <Filter type='rating' options={RATING_OPTIONS} />

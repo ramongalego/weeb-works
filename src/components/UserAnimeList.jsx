@@ -24,7 +24,7 @@ const UserAnimeList = ({ data, title }) => {
         {data.map(anime => (
           <div
             key={anime.animeId}
-            className='group h-44 w-28 cursor-pointer rounded text-gray-500 hover:text-gray-800'
+            className='group h-40 w-24 cursor-pointer rounded text-gray-500 hover:text-gray-800 sm:h-44 sm:w-28'
           >
             <div className='relative h-full w-full'>
               <button
