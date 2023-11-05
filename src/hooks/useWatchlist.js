@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 
 import useWatchlistStore from '../app/useWatchlistStore';
 
@@ -16,13 +16,13 @@ export const useWatchlist = (user, data) => {
     }
   }, [user, fetchUserWatchlistData]);
 
-  const handleWatchlistAction = useCallback(() => {
+  const handleWatchlistAction = () => {
     if (animeInWatchlist) {
       removeFromWatchlist(animeInWatchlist.$id);
     } else {
       addToWatchlist(data);
     }
-  }, [animeInWatchlist, removeFromWatchlist, addToWatchlist, data]);
+  };
 
   return { handleWatchlistAction, animeInWatchlist };
 };

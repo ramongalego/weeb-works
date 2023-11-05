@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 
 import useFavoritesStore from '../app/useFavoritesStore';
 
@@ -16,13 +16,13 @@ export const useFavorites = (user, data) => {
     }
   }, [user, fetchUserFavoritesData]);
 
-  const handleFavoritesAction = useCallback(() => {
+  const handleFavoritesAction = () => {
     if (animeInFavorites) {
       removeFromFavorites(animeInFavorites.$id);
     } else {
       addToFavorites(data);
     }
-  }, [animeInFavorites, removeFromFavorites, addToFavorites, data]);
+  };
 
   return { handleFavoritesAction, animeInFavorites };
 };
