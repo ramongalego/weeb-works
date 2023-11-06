@@ -10,7 +10,7 @@ const renderDetailsSection = (title, data) => {
 };
 
 const AnimeDetailsInfo = ({ data }) => (
-  <div className='mb-4 mt-14 min-h-[600px] rounded bg-gray-50 p-4 text-sm text-gray-500'>
+  <div className='mb-4 mt-80 sm:mt-14 min-h-[600px] rounded bg-gray-50 p-4 text-sm text-gray-500'>
     {renderDetailsSection('Format', data.type)}
     {renderDetailsSection('Episodes', data.episodes)}
     {renderDetailsSection('Episodes Duration', data.duration)}

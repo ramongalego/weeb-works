@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [isSticky, setIsSticky] = useState(true);
-  const navbarHeight = 80;
+  const navbarHeight = 60;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,8 +57,10 @@ const Navbar = () => {
             </ul>
           </div>
           <div className='flex items-center'>
+            {/* TODO: Finish mobile menu implementation */}
+            <div className='mr-4 block sm:hidden'>|||</div>
             <Search isNavbar />
-            <p className='ml-6 cursor-pointer'>
+            <p className='ml-6 cursor-pointer hidden sm:block'>
               {user ? <button onClick={logoutUser}>Logout</button> : <Link to='/login'>Login</Link>}
             </p>
             {!user && (
