@@ -12,15 +12,16 @@ const Navbar = () => {
 
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [isSticky, setIsSticky] = useState(true);
+  const navbarHeight = 80;
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
 
-      if (currentScrollTop < lastScrollTop) {
-        setIsSticky(true);
-      } else {
+      if (currentScrollTop > lastScrollTop && currentScrollTop > navbarHeight) {
         setIsSticky(false);
+      } else if (currentScrollTop < lastScrollTop || currentScrollTop <= navbarHeight) {
+        setIsSticky(true);
       }
 
       setLastScrollTop(currentScrollTop <= 0 ? 0 : currentScrollTop);
