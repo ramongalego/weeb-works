@@ -57,10 +57,8 @@ const Navbar = () => {
             </ul>
           </div>
           <div className='flex items-center'>
-            {/* TODO: Finish mobile menu implementation */}
-            <div className='mr-4 block sm:hidden'>|||</div>
             <Search isNavbar />
-            <p className='ml-6 cursor-pointer hidden sm:block'>
+            <p className='ml-6 cursor-pointer'>
               {user ? <button onClick={logoutUser}>Logout</button> : <Link to='/login'>Login</Link>}
             </p>
             {!user && (
