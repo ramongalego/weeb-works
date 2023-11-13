@@ -1,6 +1,11 @@
 import { TagIcon } from '@heroicons/react/24/outline';
 
-const FilterTag = ({ title, value }) => (
+type FilterTagProps = {
+  title: string;
+  value: string;
+};
+
+const FilterTag = ({ title, value }: FilterTagProps) => (
   <div className='mt-8 flex items-center justify-center text-sm sm:justify-start'>
     <TagIcon className='mr-4 h-6 w-6 text-gray-500' />
     <h1 className=' rounded-lg bg-indigo-500 px-3 py-1 text-white'>

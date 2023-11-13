@@ -1,4 +1,5 @@
 import { useParams, useLocation, useSearchParams } from 'react-router-dom';
+import { UseQueryResult } from '@tanstack/react-query';
 
 import Filter from '../components/Filter';
 import FilterTag from '../components/FilterTag';
@@ -6,12 +7,17 @@ import { FORMAT_OPTIONS, STATUS_OPTIONS, RATING_OPTIONS } from '../constants/sel
 import { AnimeList } from '../features/anime/AnimeList';
 import { useGenresQuery, useInfiniteAnimeDataQuery } from '../hooks/queryHooks';
 
-const renderFilterSection = genres => (
+type GenresData = {
+  mal_id: number;
+  name: string;
+}[];
+
+const renderFilterSection = (genres: UseQueryResult<GenresData>) => (
   <div className='-mt-10 flex flex-col items-center justify-between sm:-mt-0 sm:flex-row'>
     <Filter title='format' type='type' options={FORMAT_OPTIONS} />
     <Filter type='status' options={STATUS_OPTIONS} />
     <Filter type='rating' options={RATING_OPTIONS} />
-    <Filter type='genres' options={genres.data} />
+    <Filter type='genres' options={genres.data || []} />
   </div>
 );
 
