@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 
+import { AnimeData } from '../../../types';
+
 import AnimeGrid from './AnimeGrid';
 
-import { AnimeData } from '../../../types';
 
 type AnimeListPreviewProps = {
   path: string;
