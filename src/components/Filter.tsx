@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import { GenreFilterOptions } from '../types';
+
 type FilterProps = {
   type: string;
   options: FilterOptions[] | GenreFilterOptions[];
@@ -10,11 +12,6 @@ type FilterProps = {
 type FilterOptions = {
   value: string;
   label: string;
-};
-
-type GenreFilterOptions = {
-  mal_id: number;
-  name: string;
 };
 
 const isGenresFilter = (

@@ -1,15 +1,29 @@
+import { AxiosError } from 'axios';
 import Error from '../../../components/Error';
 import SkeletonLoading from '../../../components/SkeletonLoading';
 
+import { AnimeData } from '../../../types';
+
 import AnimeItem from './AnimeItem';
 
-const AnimeGrid = ({ data, isLoading, error, skeletonCount }) => {
+type AnimeGridProps = {
+  data: AnimeData[] | undefined;
+  isLoading: boolean;
+  error: unknown;
+  skeletonCount: number;
+};
+
+const AnimeGrid = ({ data = [], isLoading, error, skeletonCount }: AnimeGridProps) => {
   if (isLoading) {
     return <SkeletonLoading count={skeletonCount} />;
   }
 
-  if (error) {
+  if (error instanceof AxiosError) {
     return <Error message={error.message} />;
+  }
+
+  if (error) {
+    return <Error />;
   }
 
   if (data.length === 0) {

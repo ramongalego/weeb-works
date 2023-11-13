@@ -1,9 +1,19 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { InfiniteQueryObserverResult, InfiniteData } from '@tanstack/react-query';
+
+import { InfiniteAnimeData } from '../../../types';
 
 import AnimeGrid from './AnimeGrid';
 
-const AnimeList = ({ data, isFetchingNextPage, fetchNextPage, hasNextPage, isLoading, error }) => {
+type AnimeListProps = {
+  data: InfiniteData<InfiniteAnimeData> | undefined;
+  fetchNextPage: () => Promise<InfiniteQueryObserverResult<any, unknown>>;
+  isLoading: boolean;
+  error: unknown;
+};
+
+const AnimeList = ({ data, fetchNextPage, isLoading, error }: AnimeListProps) => {
   const { ref, inView } = useInView();
 
   useEffect(() => {
@@ -20,7 +30,7 @@ const AnimeList = ({ data, isFetchingNextPage, fetchNextPage, hasNextPage, isLoa
         error={error}
         skeletonCount={25}
       />
-      <div ref={ref} disabled={!hasNextPage || isFetchingNextPage}></div>
+      <div ref={ref}></div>
     </div>
   );
 };
