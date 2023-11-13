@@ -8,7 +8,7 @@ const useAuthStore = create(set => ({
   isLoading: false,
   errors: {},
 
-  loginUser: async (email, password) => {
+  loginUser: async (email: string, password: string) => {
     set({ isLoading: true });
 
     try {
@@ -32,7 +32,7 @@ const useAuthStore = create(set => ({
     }
   },
 
-  registerUser: async (id, email, password, username) => {
+  registerUser: async (id: string, email: string, password: string, username: string) => {
     set({ isLoading: true });
 
     try {
@@ -49,7 +49,7 @@ const useAuthStore = create(set => ({
 
   fetchUserData: async () => {
     try {
-      let accountDetails = await account.get();
+      const accountDetails = await account.get();
       set({ user: accountDetails, errors: {} });
     } catch (error) {
       set({ user: null, errors: error });

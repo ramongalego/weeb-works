@@ -2,14 +2,21 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Search = ({ isNavbar }) => {
-  const navigate = useNavigate();
-  const inputRef = useRef(null);
+type SeachProps = {
+  isNavbar?: boolean;
+};
 
-  const handleSubmit = e => {
+const Search = ({ isNavbar }: SeachProps) => {
+  const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate(`/anime?q=${inputRef.current.value}`);
-    inputRef.current.value = '';
+
+    if (inputRef.current) {
+      navigate(`/anime?q=${inputRef.current.value}`);
+      inputRef.current.value = '';
+    }
   };
 
   return (

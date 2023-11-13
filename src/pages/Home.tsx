@@ -1,3 +1,5 @@
+import { UseQueryResult } from '@tanstack/react-query';
+
 import {
   fetchAiringAnime,
   fetchUpcomingAnime,
@@ -8,8 +10,17 @@ import Search from '../components/Search';
 import { ANIME_LIST_PREVIEW_CONFIG } from '../constants/fetchOptions';
 import { AnimeListPreview } from '../features/anime/AnimeList';
 import { useAnimePreviewListQuery } from '../hooks/queryHooks';
+import { AnimeData } from '../types';
 
-const renderAnimeListPreview = (title, path, query) => (
+type AnimeListData = {
+  data: AnimeData[];
+};
+
+const renderAnimeListPreview = (
+  title: string,
+  path: string,
+  query: UseQueryResult<AnimeListData, unknown>,
+) => (
   <AnimeListPreview
     title={title}
     path={path}

@@ -2,7 +2,14 @@ import axios from 'axios';
 
 import { BASE_URL } from '../constants/fetchOptions';
 
-export const fetchHighestRatedAnime = async (page, limit) => {
+type FetchAnimeDataArgs = {
+  page: number;
+  filter: string;
+  locationSearch: string;
+  isAnyValueNotPresent: boolean;
+};
+
+export const fetchHighestRatedAnime = async (page: number, limit?: number) => {
   const res = await axios.get(
     `${BASE_URL}/top/anime?page=${page}${limit ? '&limit=' + limit : ''}&sfw=true`,
   );
@@ -11,7 +18,7 @@ export const fetchHighestRatedAnime = async (page, limit) => {
   return data;
 };
 
-export const fetchUpcomingAnime = async (page, limit) => {
+export const fetchUpcomingAnime = async (page: number, limit?: number) => {
   const res = await axios.get(
     `${BASE_URL}/seasons/upcoming?page=${page}${limit ? '&limit=' + limit : ''}&sfw=true`,
   );
@@ -20,7 +27,7 @@ export const fetchUpcomingAnime = async (page, limit) => {
   return data;
 };
 
-export const fetchAiringAnime = async (page, limit) => {
+export const fetchAiringAnime = async (page: number, limit?: number) => {
   const res = await axios.get(
     `${BASE_URL}/top/anime?filter=airing&page=${page}${limit ? '&limit=' + limit : ''}&sfw=true`,
   );
@@ -29,7 +36,7 @@ export const fetchAiringAnime = async (page, limit) => {
   return data;
 };
 
-export const fetchMostPopularAnime = async (page, limit) => {
+export const fetchMostPopularAnime = async (page: number, limit?: number) => {
   const res = await axios.get(
     `${BASE_URL}/top/anime?filter=bypopularity&page=${page}${
       limit ? '&limit=' + limit : ''
@@ -40,7 +47,7 @@ export const fetchMostPopularAnime = async (page, limit) => {
   return data;
 };
 
-export const fetchAnimeById = async id => {
+export const fetchAnimeById = async (id: number) => {
   const res = await axios.get(`${BASE_URL}/anime/${id}`);
   const data = res.data.data;
 
@@ -54,14 +61,19 @@ export const fetchAnimeGenres = async () => {
   return data;
 };
 
-export const fetchFilteredAnime = async (page, filterParams) => {
+export const fetchFilteredAnime = async (page: number, filterParams: string) => {
   const res = await axios.get(`${BASE_URL}/anime${filterParams}&page=${page}&sfw=true`);
   const data = res.data;
 
   return data;
 };
 
-export const fetchAnimeData = async ({ page, filter, locationSearch, isAnyValueNotPresent }) => {
+export const fetchAnimeData = async ({
+  page,
+  filter,
+  locationSearch,
+  isAnyValueNotPresent,
+}: FetchAnimeDataArgs) => {
   if (locationSearch && isAnyValueNotPresent) {
     return fetchFilteredAnime(page, locationSearch);
   } else {
