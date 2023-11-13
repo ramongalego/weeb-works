@@ -1,12 +1,11 @@
-import { useParams, useLocation, useSearchParams } from 'react-router-dom';
 import { UseQueryResult } from '@tanstack/react-query';
+import { useParams, useLocation, useSearchParams } from 'react-router-dom';
 
 import Filter from '../components/Filter';
 import FilterTag from '../components/FilterTag';
 import { FORMAT_OPTIONS, STATUS_OPTIONS, RATING_OPTIONS } from '../constants/selectOptions';
 import { AnimeList } from '../features/anime/AnimeList';
 import { useGenresQuery, useInfiniteAnimeDataQuery } from '../hooks/queryHooks';
-
 import { GenreFilterOptions } from '../types';
 
 const renderFilterSection = (genres: UseQueryResult<GenreFilterOptions[]>) => (

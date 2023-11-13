@@ -1,6 +1,6 @@
+import { InfiniteQueryObserverResult, InfiniteData } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { InfiniteQueryObserverResult, InfiniteData } from '@tanstack/react-query';
 
 import { InfiniteAnimeData } from '../../../types';
 

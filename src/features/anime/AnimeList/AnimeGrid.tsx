@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
+
 import Error from '../../../components/Error';
 import SkeletonLoading from '../../../components/SkeletonLoading';
-
 import { AnimeData } from '../../../types';
 
 import AnimeItem from './AnimeItem';
