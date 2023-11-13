@@ -1,4 +1,4 @@
-const SkeletonLoading = ({ count }) => {
+const SkeletonLoading = ({ count }: { count: number }) => {
   const items = Array(count).fill(null);
 
   return (

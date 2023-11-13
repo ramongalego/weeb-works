@@ -9,6 +9,12 @@ import Loading from '../components/Loading';
 import ValidationMessage from '../components/ValidationMessage';
 import { signUpSchema } from '../constants/formSchemas';
 
+type SignUpData = {
+  email: string;
+  password: string;
+  username: string;
+};
+
 const SignUp = () => {
   const navigate = useNavigate();
 
@@ -22,7 +28,7 @@ const SignUp = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(signUpSchema) });
 
-  const onSubmit = async data => {
+  const onSubmit = async (data: SignUpData) => {
     await registerUser(ID.unique(), data.email, data.password, data.username);
 
     if (!isLoading && !authErrors) navigate('/');

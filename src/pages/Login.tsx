@@ -8,6 +8,11 @@ import Loading from '../components/Loading';
 import ValidationMessage from '../components/ValidationMessage';
 import { loginSchema } from '../constants/formSchemas';
 
+type LoginData = {
+  email: string;
+  password: string;
+};
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -23,7 +28,7 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(loginSchema) });
 
-  const onSubmit = async data => {
+  const onSubmit = async (data: LoginData) => {
     await loginUser(data.email, data.password);
 
     if (!isLoading && !authErrors) navigate('/');

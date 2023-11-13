@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
 
-const AnimeItem = ({ anime }) => {
+import { AnimeData } from '../../../types';
+
+type AnimeItemProps = {
+  anime: AnimeData;
+};
+
+const AnimeItem = ({ anime }: AnimeItemProps) => {
   return (
     <Link to={`/anime/details/${anime.mal_id}`}>
       <div

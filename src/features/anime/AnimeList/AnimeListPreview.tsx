@@ -2,7 +2,17 @@ import { Link } from 'react-router-dom';
 
 import AnimeGrid from './AnimeGrid';
 
-const AnimeListPreview = ({ path, title, data, isLoading, error }) => {
+import { AnimeData } from '../../../types';
+
+type AnimeListPreviewProps = {
+  path: string;
+  title: string;
+  data: AnimeData[] | undefined;
+  isLoading: boolean;
+  error: unknown;
+};
+
+const AnimeListPreview = ({ path, title, data, isLoading, error }: AnimeListPreviewProps) => {
   return (
     <div className='mt-14 w-full'>
       <div className='flex items-end justify-between'>
