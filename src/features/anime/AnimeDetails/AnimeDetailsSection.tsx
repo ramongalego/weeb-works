@@ -1,4 +1,9 @@
-const AnimeDetailsSection = ({ title, data }) => {
+type AnimeDetailsSectionProps = {
+  title: string;
+  data: string | number | Array<{ mal_id: number; name: string }>;
+};
+
+const AnimeDetailsSection = ({ title, data }: AnimeDetailsSectionProps) => {
   const content = Array.isArray(data) ? (
     data.map(item => (
       <div key={item.name} className='mt-1 capitalize'>

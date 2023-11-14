@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { useParams } from 'react-router-dom';
 
 import Error from '../../../components/Error';
@@ -18,8 +19,8 @@ const AnimeDetails = () => {
     return <Loading />;
   }
 
-  if (error) {
-    if (error.response.status === 404) {
+  if (error instanceof AxiosError) {
+    if (error.response && error.response.status === 404) {
       return <NotFound />;
     }
 

@@ -1,10 +1,22 @@
+import { Models } from 'appwrite';
 import { create } from 'zustand';
 
 import { databases, ID, Query, DATABASE_ID, FAVORITES_COLLECTION_ID } from '../appwriteConfig';
+import { AnimeData } from '../types';
 
 import useAuthStore from './useAuthStore';
 
-const useFavoritesStore = create(set => ({
+type FavoritesStoreState = {
+  favorites: Models.Document[];
+  isLoading: boolean;
+  errors: unknown;
+
+  addToFavorites: (anime: AnimeData) => Promise<void>;
+  removeFromFavorites: (documentId: string) => Promise<void>;
+  fetchUserFavoritesData: () => Promise<void>;
+};
+
+const useFavoritesStore = create<FavoritesStoreState>(set => ({
   favorites: [],
   isLoading: false,
   errors: {},

@@ -2,7 +2,26 @@ import { create } from 'zustand';
 
 import { account } from '../appwriteConfig';
 
-const useAuthStore = create(set => ({
+type AuthStoreState = {
+  current: CurrentObject<string | boolean> | null;
+  user: User | null;
+  isLoading: boolean;
+  errors: unknown;
+
+  loginUser: (email: string, password: string) => Promise<void>;
+  logoutUser: () => Promise<void>;
+  registerUser: (id: string, email: string, password: string, username: string) => Promise<void>;
+  fetchUserData: () => Promise<void>;
+};
+
+type User = {
+  $id: string;
+  name: string;
+};
+
+type CurrentObject<T> = Record<string, T> | null;
+
+const useAuthStore = create<AuthStoreState>(set => ({
   current: null,
   user: null,
   isLoading: false,

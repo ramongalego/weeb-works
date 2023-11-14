@@ -35,7 +35,7 @@ const Profile = () => {
             />
           </div>
           <div className='relative top-10 w-full px-8 text-white sm:top-2'>
-            <h1 className='text-2xl font-semibold'>{user?.name}</h1>
+            {user && <h1 className='text-2xl font-semibold'>{user.name}</h1>}
           </div>
         </div>
       </div>

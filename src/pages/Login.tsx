@@ -13,12 +13,17 @@ type LoginData = {
   password: string;
 };
 
+type AuthErrors = {
+  type: string;
+  message: string;
+};
+
 const Login = () => {
   const navigate = useNavigate();
 
   const loginUser = useAuthStore(state => state.loginUser);
   const isLoading = useAuthStore(state => state.isLoading);
-  const authErrors = useAuthStore(state => state.errors);
+  const authErrors = useAuthStore(state => state.errors) as AuthErrors;
 
   const invalidCredentials = authErrors?.type === 'user_invalid_credentials';
 

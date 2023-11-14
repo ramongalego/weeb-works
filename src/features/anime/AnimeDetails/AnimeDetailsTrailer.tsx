@@ -1,4 +1,4 @@
-const AnimeDetailsTrailer = ({ trailerUrl }) => {
+const AnimeDetailsTrailer = ({ trailerUrl }: { trailerUrl: string }) => {
   const sanitizedTrailerUrl = trailerUrl.replace('autoplay=1', 'autoplay=0');
 
   return (

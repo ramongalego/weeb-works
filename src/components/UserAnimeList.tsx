@@ -1,14 +1,20 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { Models } from 'appwrite';
 import { Link } from 'react-router-dom';
 
 import useFavoritesStore from '../app/useFavoritesStore';
 import useWatchlistStore from '../app/useWatchlistStore';
 
-const UserAnimeList = ({ data, title }) => {
+type UserAnimeListProps = {
+  data: Models.Document[];
+  title: string;
+};
+
+const UserAnimeList = ({ data, title }: UserAnimeListProps) => {
   const removeFromWatchlist = useWatchlistStore(state => state.removeFromWatchlist);
   const removeFromFavorites = useFavoritesStore(state => state.removeFromFavorites);
 
-  const handleRemoveFromList = id => {
+  const handleRemoveFromList = (id: string) => {
     if (title === 'watchlist') {
       removeFromWatchlist(id);
     } else {

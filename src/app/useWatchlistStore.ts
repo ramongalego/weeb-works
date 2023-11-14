@@ -1,10 +1,22 @@
+import { Models } from 'appwrite';
 import { create } from 'zustand';
 
 import { databases, ID, Query, DATABASE_ID, WATCHLIST_COLLECTION_ID } from '../appwriteConfig';
+import { AnimeData } from '../types';
 
 import useAuthStore from './useAuthStore';
 
-const useWatchlistStore = create(set => ({
+type WatchlistStoreState = {
+  watchlist: Models.Document[];
+  isLoading: boolean;
+  errors: unknown;
+
+  addToWatchlist: (anime: AnimeData) => Promise<void>;
+  removeFromWatchlist: (documentId: string) => Promise<void>;
+  fetchUserWatchlistData: () => Promise<void>;
+};
+
+const useWatchlistStore = create<WatchlistStoreState>(set => ({
   watchlist: [],
   isLoading: false,
   errors: {},

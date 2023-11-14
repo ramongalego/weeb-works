@@ -3,8 +3,9 @@ import { HeartIcon } from '@heroicons/react/24/solid';
 import useAuthStore from '../../../app/useAuthStore';
 import { useFavorites } from '../../../hooks/useFavorites';
 import { useWatchlist } from '../../../hooks/useWatchlist';
+import { AnimeData } from '../../../types';
 
-const AnimeDetailsActions = ({ data }) => {
+const AnimeDetailsActions = ({ data }: { data: AnimeData }) => {
   const user = useAuthStore(state => state.user);
 
   const { handleWatchlistAction, animeInWatchlist } = useWatchlist(user, data);
