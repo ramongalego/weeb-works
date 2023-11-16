@@ -2,6 +2,11 @@ import { create } from 'zustand';
 
 import { account } from '../appwriteConfig';
 
+export type User = {
+  $id: string;
+  name: string;
+};
+
 type AuthStoreState = {
   current: CurrentObject<string | boolean> | null;
   user: User | null;
@@ -12,11 +17,6 @@ type AuthStoreState = {
   logoutUser: () => Promise<void>;
   registerUser: (id: string, email: string, password: string, username: string) => Promise<void>;
   fetchUserData: () => Promise<void>;
-};
-
-type User = {
-  $id: string;
-  name: string;
 };
 
 type CurrentObject<T> = Record<string, T> | null;

@@ -47,7 +47,7 @@ export const fetchMostPopularAnime = async (page: number, limit?: number) => {
   return data;
 };
 
-export const fetchAnimeById = async (id: number) => {
+export const fetchAnimeById = async (id: string) => {
   const res = await axios.get(`${BASE_URL}/anime/${id}`);
   const data = res.data.data;
 

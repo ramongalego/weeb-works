@@ -13,7 +13,7 @@ import AnimeDetailsTrailer from './AnimeDetailsTrailer';
 const AnimeDetails = () => {
   const { id } = useParams();
 
-  const { data, isLoading, error } = useAnimeDetailsQuery(id);
+  const { data, isLoading, error } = useAnimeDetailsQuery(id!);
 
   if (isLoading) {
     return <Loading />;

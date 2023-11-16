@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 
+import { User } from '../app/useAuthStore';
 import useFavoritesStore from '../app/useFavoritesStore';
+import { AnimeData } from '../types';
 
-export const useFavorites = (user, data) => {
+export const useFavorites = (user: User | null, data: AnimeData) => {
   const fetchUserFavoritesData = useFavoritesStore(state => state.fetchUserFavoritesData);
   const favorites = useFavoritesStore(state => state.favorites);
   const addToFavorites = useFavoritesStore(state => state.addToFavorites);
