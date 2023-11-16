@@ -35,7 +35,7 @@ export const useAnimeDetailsQuery = (id: string) => {
 };
 
 export const useInfiniteAnimeDataQuery = (
-  filter: string,
+  filter: string | undefined,
   location: { search: string },
   isAnyValueNotPresent: boolean,
 ) => {

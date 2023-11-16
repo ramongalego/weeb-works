@@ -4,7 +4,7 @@ import { BASE_URL } from '../constants/fetchOptions';
 
 type FetchAnimeDataArgs = {
   page: number;
-  filter: string;
+  filter: string | undefined;
   locationSearch: string;
   isAnyValueNotPresent: boolean;
 };
