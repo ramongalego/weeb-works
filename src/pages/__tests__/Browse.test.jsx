@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { screen, render } from '@testing-library/react';
-/* eslint-disable no-unused-vars */
 import {
   setupIntersectionMocking,
   resetIntersectionMocking,
