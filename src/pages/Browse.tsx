@@ -26,17 +26,21 @@ const Browse = () => {
 
   const isAnyValueNotPresent = ![...searchParams.values()].includes('any');
 
-  const { data, fetchNextPage, error, isLoading } = useInfiniteAnimeDataQuery(
-    filter,
-    location,
-    isAnyValueNotPresent,
-  );
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error, isLoading } =
+    useInfiniteAnimeDataQuery(filter, location, isAnyValueNotPresent);
 
   return (
     <div className='mx-auto mb-8 mt-14 max-w-7xl px-2 pt-20 sm:px-6 lg:px-8'>
       {renderFilterSection(useGenresQuery())}
       {searchQueryValue && <FilterTag title='Search' value={searchQueryValue} />}
-      <AnimeList isLoading={isLoading} data={data} fetchNextPage={fetchNextPage} error={error} />
+      <AnimeList
+        data={data}
+        fetchNextPage={fetchNextPage}
+        hasNextPage={hasNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+        isLoading={isLoading}
+        error={error}
+      />
     </div>
   );
 };
