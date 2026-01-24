@@ -1,5 +1,4 @@
 import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
 
 import { fetchAnimeById, fetchAnimeGenres, fetchAnimeData } from '../api/animeService';
 import { QUERY_STALE_TIME, INITIAL_PAGE, PREVIEW_LIMIT } from '../constants/fetchOptions';
@@ -24,13 +23,11 @@ export const useAnimePreviewListQuery = <T>(
   });
 
 export const useAnimeDetailsQuery = (id: string) => {
-  const { data, isLoading, error } = useQuery<AnimeData, AxiosError>({
+  const { data, isLoading, error } = useQuery<AnimeData>({
     queryKey: ['animeDetails', id],
     queryFn: () => fetchAnimeById(id),
     staleTime: QUERY_STALE_TIME,
-    retry: (_failureCount, error) => {
-      return !(error.response && error.response.status === 404);
-    },
+    // Retry logic handled by global QueryClient config
   });
 
   return { data, isLoading, error };
