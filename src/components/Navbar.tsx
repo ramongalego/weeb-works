@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import useAuthStore from '../app/useAuthStore';
@@ -10,7 +10,7 @@ const Navbar = () => {
   const user = useAuthStore(state => state.user);
   const logoutUser = useAuthStore(state => state.logoutUser);
 
-  const [lastScrollTop, setLastScrollTop] = useState(0);
+  const lastScrollTop = useRef(0);
   const [isSticky, setIsSticky] = useState(true);
   const navbarHeight = 60;
 
@@ -18,18 +18,18 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
 
-      if (currentScrollTop > lastScrollTop && currentScrollTop > navbarHeight) {
+      if (currentScrollTop > lastScrollTop.current && currentScrollTop > navbarHeight) {
         setIsSticky(false);
-      } else if (currentScrollTop < lastScrollTop || currentScrollTop <= navbarHeight) {
+      } else if (currentScrollTop < lastScrollTop.current || currentScrollTop <= navbarHeight) {
         setIsSticky(true);
       }
 
-      setLastScrollTop(currentScrollTop <= 0 ? 0 : currentScrollTop);
+      lastScrollTop.current = currentScrollTop <= 0 ? 0 : currentScrollTop;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollTop]);
+  }, []);
 
   return (
     <nav
