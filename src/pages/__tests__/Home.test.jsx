@@ -35,7 +35,7 @@ describe('Home component', () => {
     const itemsTitle = await screen.findAllByText('Mock Title');
     const itemsImage = await screen.findAllByAltText('Mock Title');
 
-    expect(itemsTitle).toHaveLength(3);
-    expect(itemsImage).toHaveLength(3);
+    expect(itemsTitle).toHaveLength(12);
+    expect(itemsImage).toHaveLength(12);
   });
 });
