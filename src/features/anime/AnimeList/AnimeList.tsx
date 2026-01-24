@@ -2,21 +2,17 @@ import { InfiniteQueryObserverResult, InfiniteData } from '@tanstack/react-query
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { AnimeData } from '../../../types';
+import { AnimeListResponse } from '../../../types';
 
 import AnimeGrid from './AnimeGrid';
 
 type AnimeListProps = {
-  data: InfiniteData<AnimeListData> | undefined;
-  fetchNextPage: () => Promise<InfiniteQueryObserverResult<AnimeListData, unknown>>;
+  data: InfiniteData<AnimeListResponse> | undefined;
+  fetchNextPage: () => Promise<InfiniteQueryObserverResult<AnimeListResponse, unknown>>;
   hasNextPage: boolean | undefined;
   isFetchingNextPage: boolean;
   isLoading: boolean;
   error: unknown;
-};
-
-type AnimeListData = {
-  data: AnimeData;
 };
 
 const AnimeList = ({

@@ -2,9 +2,13 @@ import { AnimeData } from '../../../types';
 
 import AnimeDetailsSection from './AnimeDetailsSection';
 
-type RenderDetailsSectionData = string | number | Array<{ mal_id: number; name: string }>;
+type RenderDetailsSectionData = string | number | null | Array<{ mal_id: number; name: string }>;
 
 const renderDetailsSection = (title: string, data: RenderDetailsSectionData) => {
+  if (data === null || data === undefined) {
+    return null;
+  }
+
   const hasData = Array.isArray(data) ? data.length > 0 : data && data !== 'Unknown';
 
   if (hasData) {

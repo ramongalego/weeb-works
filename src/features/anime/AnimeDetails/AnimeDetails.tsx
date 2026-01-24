@@ -27,6 +27,10 @@ const AnimeDetails = () => {
     return <Error message={error.message} />;
   }
 
+  if (!data) {
+    return <Loading />;
+  }
+
   return (
     <>
       <div className='mt-20 h-80 bg-gray-50'>
@@ -34,7 +38,7 @@ const AnimeDetails = () => {
           <div className='h-72 w-64 rounded'>
             <img
               src={data.images.jpg.large_image_url}
-              alt={data.title_english}
+              alt={data.title_english ?? data.title}
               className='h-full w-full rounded'
             />
           </div>

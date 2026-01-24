@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 
 import { fetchAnimeById, fetchAnimeGenres, fetchAnimeData } from '../api/animeService';
 import { QUERY_STALE_TIME, INITIAL_PAGE, PREVIEW_LIMIT } from '../constants/fetchOptions';
-import { GenreFilterOptions } from '../types';
+import { AnimeData, AnimeListResponse, GenreFilterOptions } from '../types';
 
 export const useGenresQuery = () =>
   useQuery<GenreFilterOptions[]>({
@@ -24,12 +24,16 @@ export const useAnimePreviewListQuery = <T>(
 
 export const useAnimeDetailsQuery = (id: string) => {
   // eslint-disable-next-line @tanstack/query/prefer-query-object-syntax
-  const { data, isLoading, error } = useQuery(['animeDetails', id], () => fetchAnimeById(id), {
-    staleTime: QUERY_STALE_TIME,
-    retry: (_failureCount, error: AxiosError) => {
-      return !(error.response && error.response.status === 404);
+  const { data, isLoading, error } = useQuery<AnimeData, AxiosError>(
+    ['animeDetails', id],
+    () => fetchAnimeById(id),
+    {
+      staleTime: QUERY_STALE_TIME,
+      retry: (_failureCount, error) => {
+        return !(error.response && error.response.status === 404);
+      },
     },
-  });
+  );
 
   return { data, isLoading, error };
 };
@@ -40,7 +44,7 @@ export const useInfiniteAnimeDataQuery = (
   isAnyValueNotPresent: boolean,
 ) => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error, isLoading } =
-    useInfiniteQuery(
+    useInfiniteQuery<AnimeListResponse>(
       ['animeData', filter, location.search, isAnyValueNotPresent],
       ({ pageParam = 1 }) =>
         fetchAnimeData({

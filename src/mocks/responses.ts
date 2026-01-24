@@ -6,7 +6,7 @@ export const animeDetails = {
     synopsis: 'Mock Synopsis',
     images: {
       jpg: {
-        large_img_url: 'http://www.mockimage.com',
+        large_image_url: 'http://www.mockimage.com',
       },
     },
     trailer: {
@@ -26,7 +26,7 @@ export const animeList = {
       title: 'Mock Alt Title',
       images: {
         jpg: {
-          large_img_url: 'http://www.mockimage.com',
+          large_image_url: 'http://www.mockimage.com',
         },
       },
     },
@@ -36,7 +36,7 @@ export const animeList = {
       title: 'Mock Alt Title',
       images: {
         jpg: {
-          large_img_url: 'http://www.mockimage.com',
+          large_image_url: 'http://www.mockimage.com',
         },
       },
     },
@@ -46,7 +46,7 @@ export const animeList = {
       title: 'Mock Alt Title',
       images: {
         jpg: {
-          large_img_url: 'http://www.mockimage.com',
+          large_image_url: 'http://www.mockimage.com',
         },
       },
     },

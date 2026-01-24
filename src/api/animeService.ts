@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { BASE_URL } from '../constants/fetchOptions';
+import { AnimeData, AnimeListResponse } from '../types';
 
 type FetchAnimeDataArgs = {
   page: number;
@@ -9,63 +10,68 @@ type FetchAnimeDataArgs = {
   isAnyValueNotPresent: boolean;
 };
 
-export const fetchHighestRatedAnime = async (page: number, limit?: number) => {
-  const res = await axios.get(
+export const fetchHighestRatedAnime = async (
+  page: number,
+  limit?: number,
+): Promise<AnimeListResponse> => {
+  const res = await axios.get<AnimeListResponse>(
     `${BASE_URL}/top/anime?page=${page}${limit ? '&limit=' + limit : ''}&sfw=true`,
   );
-  const data = res.data;
-
-  return data;
+  return res.data;
 };
 
-export const fetchUpcomingAnime = async (page: number, limit?: number) => {
-  const res = await axios.get(
+export const fetchUpcomingAnime = async (
+  page: number,
+  limit?: number,
+): Promise<AnimeListResponse> => {
+  const res = await axios.get<AnimeListResponse>(
     `${BASE_URL}/seasons/upcoming?page=${page}${limit ? '&limit=' + limit : ''}&sfw=true`,
   );
-  const data = res.data;
-
-  return data;
+  return res.data;
 };
 
-export const fetchAiringAnime = async (page: number, limit?: number) => {
-  const res = await axios.get(
+export const fetchAiringAnime = async (
+  page: number,
+  limit?: number,
+): Promise<AnimeListResponse> => {
+  const res = await axios.get<AnimeListResponse>(
     `${BASE_URL}/top/anime?filter=airing&page=${page}${limit ? '&limit=' + limit : ''}&sfw=true`,
   );
-  const data = res.data;
-
-  return data;
+  return res.data;
 };
 
-export const fetchMostPopularAnime = async (page: number, limit?: number) => {
-  const res = await axios.get(
+export const fetchMostPopularAnime = async (
+  page: number,
+  limit?: number,
+): Promise<AnimeListResponse> => {
+  const res = await axios.get<AnimeListResponse>(
     `${BASE_URL}/top/anime?filter=bypopularity&page=${page}${
       limit ? '&limit=' + limit : ''
     }&sfw=true`,
   );
-  const data = res.data;
-
-  return data;
+  return res.data;
 };
 
-export const fetchAnimeById = async (id: string) => {
-  const res = await axios.get(`${BASE_URL}/anime/${id}`);
-  const data = res.data.data;
-
-  return data;
+export const fetchAnimeById = async (id: string): Promise<AnimeData> => {
+  const res = await axios.get<{ data: AnimeData }>(`${BASE_URL}/anime/${id}`);
+  return res.data.data;
 };
 
-export const fetchAnimeGenres = async () => {
-  const res = await axios.get(`${BASE_URL}/genres/anime?filter=genres`);
-  const data = res.data.data;
-
-  return data;
+export const fetchAnimeGenres = async (): Promise<Array<{ mal_id: number; name: string }>> => {
+  const res = await axios.get<{ data: Array<{ mal_id: number; name: string }> }>(
+    `${BASE_URL}/genres/anime?filter=genres`,
+  );
+  return res.data.data;
 };
 
-export const fetchFilteredAnime = async (page: number, filterParams: string) => {
-  const res = await axios.get(`${BASE_URL}/anime${filterParams}&page=${page}&sfw=true`);
-  const data = res.data;
-
-  return data;
+export const fetchFilteredAnime = async (
+  page: number,
+  filterParams: string,
+): Promise<AnimeListResponse> => {
+  const res = await axios.get<AnimeListResponse>(
+    `${BASE_URL}/anime${filterParams}&page=${page}&sfw=true`,
+  );
+  return res.data;
 };
 
 export const fetchAnimeData = async ({
@@ -73,7 +79,7 @@ export const fetchAnimeData = async ({
   filter,
   locationSearch,
   isAnyValueNotPresent,
-}: FetchAnimeDataArgs) => {
+}: FetchAnimeDataArgs): Promise<AnimeListResponse> => {
   if (locationSearch && isAnyValueNotPresent) {
     return fetchFilteredAnime(page, locationSearch);
   } else {

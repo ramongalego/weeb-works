@@ -11,7 +11,7 @@ const AnimeItem = ({ anime }: { anime: AnimeData }) => {
       >
         <img
           src={anime.images.jpg.large_image_url}
-          alt={anime.title_english}
+          alt={anime.title_english ?? anime.title}
           className='h-full w-full rounded'
         />
         <p
