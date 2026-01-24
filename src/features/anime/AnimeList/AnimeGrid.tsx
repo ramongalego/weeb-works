@@ -1,4 +1,5 @@
 import { AxiosError } from 'axios';
+import { memo } from 'react';
 
 import Error from '../../../components/Error';
 import SkeletonLoading from '../../../components/SkeletonLoading';
@@ -13,7 +14,7 @@ type AnimeGridProps = {
   skeletonCount: number;
 };
 
-const AnimeGrid = ({ data = [], isLoading, error, skeletonCount }: AnimeGridProps) => {
+const AnimeGrid = memo(({ data = [], isLoading, error, skeletonCount }: AnimeGridProps) => {
   if (isLoading) {
     return <SkeletonLoading count={skeletonCount} />;
   }
@@ -32,11 +33,13 @@ const AnimeGrid = ({ data = [], isLoading, error, skeletonCount }: AnimeGridProp
 
   return (
     <div className='mt-4 grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7'>
-      {data.map(anime => (
+      {data.map((anime) => (
         <AnimeItem anime={anime} key={anime.mal_id} />
       ))}
     </div>
   );
-};
+});
+
+AnimeGrid.displayName = 'AnimeGrid';
 
 export default AnimeGrid;

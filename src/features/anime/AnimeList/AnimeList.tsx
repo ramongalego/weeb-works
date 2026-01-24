@@ -1,5 +1,5 @@
 import { InfiniteQueryObserverResult, InfiniteData } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { AnimeListResponse } from '../../../types';
@@ -31,9 +31,16 @@ const AnimeList = ({
     }
   }, [inView, fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  const uniqueAnime = data?.pages
-    ?.flatMap((group) => group.data)
-    ?.filter((anime, index, self) => index === self.findIndex((a) => a.mal_id === anime.mal_id));
+  const uniqueAnime = useMemo(() => {
+    if (!data?.pages) return undefined;
+
+    const seen = new Set<number>();
+    return data.pages.flatMap((group) => group.data).filter((anime) => {
+      if (seen.has(anime.mal_id)) return false;
+      seen.add(anime.mal_id);
+      return true;
+    });
+  }, [data?.pages]);
 
   return (
     <div className='mt-10 w-full'>

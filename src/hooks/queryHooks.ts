@@ -9,7 +9,8 @@ export const useGenresQuery = () =>
   useQuery<GenreFilterOptions[]>({
     queryKey: ['animeGenres'],
     queryFn: fetchAnimeGenres,
-    staleTime: QUERY_STALE_TIME,
+    staleTime: Infinity,
+    cacheTime: Infinity,
   });
 
 export const useAnimePreviewListQuery = <T>(
@@ -43,7 +44,7 @@ export const useInfiniteAnimeDataQuery = (
   location: { search: string },
   isAnyValueNotPresent: boolean,
 ) => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error, isLoading } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error, isLoading, isPreviousData } =
     useInfiniteQuery<AnimeListResponse>(
       ['animeData', filter, location.search, isAnyValueNotPresent],
       ({ pageParam = 1 }) =>
@@ -61,8 +62,9 @@ export const useInfiniteAnimeDataQuery = (
           return undefined;
         },
         staleTime: QUERY_STALE_TIME,
+        keepPreviousData: true,
       },
     );
 
-  return { data, fetchNextPage, hasNextPage, isFetchingNextPage, error, isLoading };
+  return { data, fetchNextPage, hasNextPage, isFetchingNextPage, error, isLoading, isPreviousData };
 };

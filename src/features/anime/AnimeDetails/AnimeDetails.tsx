@@ -39,6 +39,7 @@ const AnimeDetails = () => {
             <img
               src={data.images.jpg.large_image_url}
               alt={data.title_english ?? data.title}
+              loading='eager'
               className='h-full w-full rounded'
             />
           </div>

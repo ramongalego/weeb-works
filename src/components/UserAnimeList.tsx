@@ -43,6 +43,7 @@ const UserAnimeList = ({ data, title }: UserAnimeListProps) => {
                 <img
                   src={anime.image}
                   alt={anime.title || anime.alt_title}
+                  loading='lazy'
                   className='h-full w-full rounded'
                 />
               </Link>
