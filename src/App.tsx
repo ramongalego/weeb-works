@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import useAuthStore from './app/useAuthStore';
+import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
 import Pages from './pages/Pages';
@@ -20,14 +21,16 @@ const App = () => {
 
   return (
     <Router>
-      <ScrollToTop />
-      <Navbar />
-      <main className='mb-10 tracking-wide text-gray-800'>
-        <QueryClientProvider client={queryClient}>
-          <Pages />
-          <ReactQueryDevtools />
-        </QueryClientProvider>
-      </main>
+      <ErrorBoundary>
+        <ScrollToTop />
+        <Navbar />
+        <main className='mb-10 tracking-wide text-gray-800'>
+          <QueryClientProvider client={queryClient}>
+            <Pages />
+            <ReactQueryDevtools />
+          </QueryClientProvider>
+        </main>
+      </ErrorBoundary>
     </Router>
   );
 };
