@@ -24,17 +24,14 @@ export const useAnimePreviewListQuery = <T>(
   });
 
 export const useAnimeDetailsQuery = (id: string) => {
-  // eslint-disable-next-line @tanstack/query/prefer-query-object-syntax
-  const { data, isLoading, error } = useQuery<AnimeData, AxiosError>(
-    ['animeDetails', id],
-    () => fetchAnimeById(id),
-    {
-      staleTime: QUERY_STALE_TIME,
-      retry: (_failureCount, error) => {
-        return !(error.response && error.response.status === 404);
-      },
+  const { data, isLoading, error } = useQuery<AnimeData, AxiosError>({
+    queryKey: ['animeDetails', id],
+    queryFn: () => fetchAnimeById(id),
+    staleTime: QUERY_STALE_TIME,
+    retry: (_failureCount, error) => {
+      return !(error.response && error.response.status === 404);
     },
-  );
+  });
 
   return { data, isLoading, error };
 };
@@ -45,26 +42,24 @@ export const useInfiniteAnimeDataQuery = (
   isAnyValueNotPresent: boolean,
 ) => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error, isLoading, isPreviousData } =
-    useInfiniteQuery<AnimeListResponse>(
-      ['animeData', filter, location.search, isAnyValueNotPresent],
-      ({ pageParam = 1 }) =>
+    useInfiniteQuery<AnimeListResponse>({
+      queryKey: ['animeData', filter, location.search, isAnyValueNotPresent],
+      queryFn: ({ pageParam = 1 }) =>
         fetchAnimeData({
           page: pageParam,
           filter,
           locationSearch: location.search,
           isAnyValueNotPresent,
         }),
-      {
-        getNextPageParam: (lastPage, pages) => {
-          if (lastPage.pagination.has_next_page) {
-            return pages.length + 1;
-          }
-          return undefined;
-        },
-        staleTime: QUERY_STALE_TIME,
-        keepPreviousData: true,
+      getNextPageParam: (lastPage, pages) => {
+        if (lastPage.pagination.has_next_page) {
+          return pages.length + 1;
+        }
+        return undefined;
       },
-    );
+      staleTime: QUERY_STALE_TIME,
+      keepPreviousData: true,
+    });
 
   return { data, fetchNextPage, hasNextPage, isFetchingNextPage, error, isLoading, isPreviousData };
 };
