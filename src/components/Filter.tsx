@@ -1,4 +1,3 @@
-import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { GenreFilterOptions } from '../types';
@@ -22,35 +21,21 @@ const isGenresFilter = (
 
 const Filter = ({ type, options, title }: FilterProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedFilter, setSelectedFilter] = useState('');
+
+  const selectedFilter = searchParams.get(type) ?? 'any';
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedFilter(e.target.value);
+    const value = e.target.value;
 
-    searchParams.set(type, e.target.value);
-    setSearchParams(searchParams);
+    setSearchParams(prev => {
+      if (value === 'any') {
+        prev.delete(type);
+      } else {
+        prev.set(type, value);
+      }
+      return prev;
+    });
   };
-
-  const removeQueryParam = useCallback(() => {
-    const param = searchParams.get(type);
-
-    if (param) {
-      searchParams.delete(type);
-      setSearchParams(searchParams);
-    }
-  }, [searchParams, setSearchParams, type]);
-
-  useEffect(() => {
-    if (selectedFilter === 'any') removeQueryParam();
-  }, [removeQueryParam, selectedFilter]);
-
-  useEffect(() => {
-    const paramsValue = searchParams.get(type);
-
-    if (paramsValue !== null) {
-      setSelectedFilter(paramsValue);
-    }
-  }, [searchParams, type]);
 
   return (
     <div className='mt-4 flex flex-col sm:mt-0'>
