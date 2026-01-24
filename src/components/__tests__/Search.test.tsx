@@ -1,9 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { ReactElement } from 'react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import { describe, beforeEach, it } from 'vitest';
 
-const renderWithRouter = element =>
+import Search from '../Search';
+
+const renderWithRouter = (element: ReactElement) =>
   render(
     <Router initialEntries={['/']}>
       <Routes>
@@ -12,8 +15,6 @@ const renderWithRouter = element =>
       </Routes>
     </Router>,
   );
-
-import Search from '../Search';
 
 describe('Search component', () => {
   beforeEach(() => {

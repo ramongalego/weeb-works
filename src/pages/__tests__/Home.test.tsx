@@ -16,7 +16,7 @@ describe('Home component', () => {
 
   const Wrapper = () => (
     <QueryClientProvider client={queryClient}>
-      <StaticRouter>
+      <StaticRouter location='/'>
         <Home />
       </StaticRouter>
     </QueryClientProvider>

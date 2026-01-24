@@ -6,13 +6,13 @@ import { describe, it, beforeEach, expect } from 'vitest';
 import Login from '../Login';
 
 describe('Login component', () => {
-  beforeEach(() =>
+  beforeEach(() => {
     render(
       <Router>
         <Login />
       </Router>,
-    ),
-  );
+    );
+  });
 
   it('renders without crashing', () => {
     screen.getByRole('button', { name: 'Login' });

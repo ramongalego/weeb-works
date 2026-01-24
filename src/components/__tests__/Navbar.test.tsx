@@ -7,7 +7,7 @@ import Navbar from '../Navbar';
 describe('Navbar component', () => {
   beforeEach(() => {
     render(
-      <StaticRouter>
+      <StaticRouter location='/'>
         <Navbar />
       </StaticRouter>,
     );

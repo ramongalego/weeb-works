@@ -6,13 +6,13 @@ import { describe, it, beforeEach, expect } from 'vitest';
 import SignUp from '../SignUp';
 
 describe('SignUp component', () => {
-  beforeEach(() =>
+  beforeEach(() => {
     render(
-      <StaticRouter>
+      <StaticRouter location='/signup'>
         <SignUp />
       </StaticRouter>,
-    ),
-  );
+    );
+  });
 
   it('should render without crashing', () => {
     screen.getByRole('button', { name: /sign up/i });

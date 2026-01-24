@@ -12,7 +12,7 @@ describe('AnimeDetailsSection component', () => {
   });
 
   it('renders correctly with title and data as an array of objects', () => {
-    render(<AnimeDetailsSection title='Genres' data={[{ name: 'Action' }, { name: 'Romance' }]} />);
+    render(<AnimeDetailsSection title='Genres' data={[{ mal_id: 1, name: 'Action' }, { mal_id: 2, name: 'Romance' }]} />);
 
     screen.getByText('Genres');
     screen.getByText('Action');

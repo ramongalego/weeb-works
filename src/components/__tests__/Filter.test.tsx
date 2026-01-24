@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { ReactElement } from 'react';
 import { MemoryRouter, Routes, Route, useSearchParams } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 
@@ -22,7 +23,7 @@ const FilterWithSearchParams = () => {
 };
 
 describe('Filter component', () => {
-  const renderWithRouter = (element, initialEntries = ['/']) => {
+  const renderWithRouter = (element: ReactElement, initialEntries = ['/']) => {
     return render(
       <MemoryRouter initialEntries={initialEntries}>
         <Routes>
@@ -47,15 +48,15 @@ describe('Filter component', () => {
   it('sets the initial dropdown value to Any when search params is empty', () => {
     renderWithRouter(<Filter type='genre' options={options} />);
 
-    const optionValue = screen.getByLabelText('genre').value;
-    expect(optionValue).toBe('any');
+    const selectElement = screen.getByLabelText('genre') as HTMLSelectElement;
+    expect(selectElement.value).toBe('any');
   });
 
   it('sets the initial dropdown value based on the search params', () => {
     renderWithRouter(<Filter type='genre' options={options} />, ['/anime?genre=action']);
 
-    const optionValue = screen.getByLabelText('genre').value;
-    expect(optionValue).toBe('action');
+    const selectElement = screen.getByLabelText('genre') as HTMLSelectElement;
+    expect(selectElement.value).toBe('action');
   });
 
   it('updates the search params when dropdown value changes', async () => {

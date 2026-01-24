@@ -1,11 +1,14 @@
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { ReactElement } from 'react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 
+import { AnimeData } from '../../../../types';
+
 import AnimeItem from '../AnimeItem';
 
-const renderWithRouter = element =>
+const renderWithRouter = (element: ReactElement) =>
   render(
     <Router>
       <Routes>
@@ -16,7 +19,7 @@ const renderWithRouter = element =>
   );
 
 describe('AnimeItem component', () => {
-  const mockAnime = {
+  const mockAnime: AnimeData = {
     mal_id: 1,
     images: {
       jpg: {
@@ -25,6 +28,20 @@ describe('AnimeItem component', () => {
     },
     title_english: 'Naruto',
     title: 'ナルト',
+    synopsis: 'A ninja anime',
+    trailer: { embed_url: null },
+    type: 'TV',
+    episodes: 220,
+    duration: '24 min',
+    status: 'Finished Airing',
+    score: 8.0,
+    year: 2002,
+    season: 'Fall',
+    source: 'Manga',
+    rating: 'PG-13',
+    studios: [],
+    themes: [],
+    genres: [],
   };
 
   it('renders AnimeItem correctly', () => {
@@ -47,14 +64,29 @@ describe('AnimeItem component', () => {
   });
 
   it('renders the default title if the english title is not available', () => {
-    const mockAnimeWithoutEnglishTitle = {
+    const mockAnimeWithoutEnglishTitle: AnimeData = {
       mal_id: 1,
       images: {
         jpg: {
           large_image_url: 'https://example.com/anime.jpg',
         },
       },
+      title_english: null,
       title: 'ナルト',
+      synopsis: 'A ninja anime',
+      trailer: { embed_url: null },
+      type: 'TV',
+      episodes: 220,
+      duration: '24 min',
+      status: 'Finished Airing',
+      score: 8.0,
+      year: 2002,
+      season: 'Fall',
+      source: 'Manga',
+      rating: 'PG-13',
+      studios: [],
+      themes: [],
+      genres: [],
     };
 
     renderWithRouter(<AnimeItem anime={mockAnimeWithoutEnglishTitle} />);
