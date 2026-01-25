@@ -1,4 +1,4 @@
-# Anime DB Web App
+# Anime List
 
 🔗 [WeebWorks](https://weeb-works.vercel.app/)
 
