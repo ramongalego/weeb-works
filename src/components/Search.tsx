@@ -28,10 +28,10 @@ const Search = ({ isNavbar }: SeachProps) => {
         ref={inputRef}
         className={`${
           isNavbar
-            ? 'w-56 rounded-md py-2 pl-11 pr-4 text-gray-800 outline-none sm:w-64'
+            ? 'w-28 rounded-md py-2 pl-11 pr-2 text-gray-800 outline-none min-[400px]:w-40 sm:w-64 sm:pr-4'
             : 'w-full rounded-md p-5 pl-12 text-xl outline-none'
         }`}
-        placeholder={isNavbar ? 'Search WeebWorks' : 'What are you searching for?'}
+        placeholder={isNavbar ? 'Search' : 'What are you searching for?'}
       />
     </form>
   );

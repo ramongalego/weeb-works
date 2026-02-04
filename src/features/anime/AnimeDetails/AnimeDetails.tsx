@@ -33,9 +33,9 @@ const AnimeDetails = () => {
 
   return (
     <>
-      <div className='mt-20 h-80 bg-gray-50'>
-        <div className='mx-auto mb-8 flex max-w-7xl flex-col items-center px-2 pt-14 sm:flex-row sm:items-start sm:px-6 lg:px-8'>
-          <div className='h-72 w-64 rounded'>
+      <div className='mt-20 h-auto bg-gray-50 pb-8 sm:h-80 sm:pb-0'>
+        <div className='mx-auto mb-8 flex max-w-7xl flex-col items-center px-4 pt-8 sm:flex-row sm:items-start sm:px-6 sm:pt-14 lg:px-8'>
+          <div className='h-64 w-48 shrink-0 rounded sm:h-72 sm:w-64'>
             <img
               src={data.images.jpg.large_image_url}
               alt={data.title_english ?? data.title}
@@ -43,10 +43,10 @@ const AnimeDetails = () => {
               className='h-full w-full rounded'
             />
           </div>
-          <div className='mt-16 w-full px-10 text-center text-gray-500 sm:mt-0 sm:text-left'>
-            <h1 className='text-2xl'>{data.title_english || data.title}</h1>
+          <div className='mt-6 w-full px-4 text-center text-gray-500 sm:mt-0 sm:px-10 sm:text-left'>
+            <h1 className='text-xl sm:text-2xl'>{data.title_english || data.title}</h1>
             <p
-              className='mt-6'
+              className='mt-4 sm:mt-6'
               style={{
                 overflow: 'hidden',
                 display: '-webkit-box',
@@ -60,8 +60,8 @@ const AnimeDetails = () => {
         </div>
       </div>
 
-      <div className='mx-auto my-8 flex max-w-7xl flex-col items-center px-2 sm:flex-row sm:items-start sm:px-6 lg:px-8'>
-        <div className='w-64 sm:w-64'>
+      <div className='mx-auto my-8 flex max-w-7xl flex-col items-center px-4 sm:flex-row sm:items-start sm:px-6 lg:px-8'>
+        <div className='w-48 sm:w-64'>
           <AnimeDetailsActions data={data} />
           <AnimeDetailsInfo data={data} />
         </div>

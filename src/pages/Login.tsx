@@ -44,28 +44,28 @@ const Login = () => {
   }
 
   return (
-    <div className='mt-14 flex justify-center pt-20'>
-      <div className='flex flex-col items-center justify-center rounded bg-white px-16 py-8'>
+    <div className='mt-14 flex justify-center px-4 pt-20'>
+      <div className='flex w-full max-w-md flex-col items-center justify-center rounded bg-white px-4 py-8 sm:px-8 md:px-16'>
         <h1 className='my-4 px-4 text-2xl font-semibold'>Login</h1>
         <form onSubmit={handleSubmit(onSubmit)} className='mt-4 flex w-full flex-col'>
           <input
             {...register('email')}
             type='text'
             placeholder='Email'
-            className='my-4 rounded bg-gray-100 px-3 py-2 outline-none'
+            className='my-4 w-full rounded bg-gray-100 px-3 py-2 outline-none'
           />
           <ValidationMessage message={errors.email?.message} />
           <input
             {...register('password')}
             type='password'
             placeholder='Password'
-            className='my-4 rounded bg-gray-100 px-3 py-2 outline-none'
+            className='my-4 w-full rounded bg-gray-100 px-3 py-2 outline-none'
           />
           <ValidationMessage message={errors.password?.message} />
           {invalidCredentials && <ValidationMessage message={authErrors.message} />}
           <button
             type='submit'
-            className='mx-auto my-8 w-28 cursor-pointer rounded bg-indigo-500 py-2 font-semibold text-white'
+            className='mx-auto my-8 w-full cursor-pointer rounded bg-indigo-500 py-2 font-semibold text-white sm:w-28'
           >
             Login
           </button>

@@ -12,7 +12,7 @@ const AnimeDetailsActions = ({ data }: { data: AnimeData }) => {
   const { handleFavoritesAction, animeInFavorites } = useFavorites(user, data);
 
   return (
-    <div className='mx-auto mt-2 flex w-64 justify-between text-white sm:w-full'>
+    <div className='mx-auto mt-2 flex w-full justify-between text-white'>
       <button className='w-9/12 rounded bg-indigo-500 py-1' onClick={handleWatchlistAction}>
         <p>{animeInWatchlist ? 'Remove from List' : 'Add to List'}</p>
       </button>

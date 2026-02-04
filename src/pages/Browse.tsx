@@ -9,7 +9,7 @@ import { useGenresQuery, useInfiniteAnimeDataQuery } from '../hooks/queryHooks';
 import { GenreFilterOptions } from '../types';
 
 const renderFilterSection = (genres: UseQueryResult<GenreFilterOptions[]>) => (
-  <div className='-mt-10 flex flex-col items-center justify-between sm:-mt-0 sm:flex-row'>
+  <div className='mt-4 flex flex-col items-center justify-between gap-2 sm:mt-0 sm:flex-row sm:gap-0'>
     <Filter title='format' type='type' options={FORMAT_OPTIONS} />
     <Filter type='status' options={STATUS_OPTIONS} />
     <Filter type='rating' options={RATING_OPTIONS} />
